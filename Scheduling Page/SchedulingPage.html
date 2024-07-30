@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+    <link rel="stylesheet" href="SchedulingPage.css">
+</head>
+<body>
+    <header>
+        <img src="../Images/msuiit-logo.png" alt="University Logo" class="logo">
+        <div class="header-text">
+            <p class="title">M&nbsp;I&nbsp;N&nbsp;D&nbsp;A&nbsp;N&nbsp;A&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;T&nbsp;A&nbsp;T&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;N&nbsp;I&nbsp;V&nbsp;E&nbsp;R&nbsp;S&nbsp;I&nbsp;T&nbsp;Y</p>
+            <p class="subtitle">I&nbsp;L&nbsp;I&nbsp;G&nbsp;A&nbsp;N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;N&nbsp;S&nbsp;T&nbsp;I&nbsp;T&nbsp;U&nbsp;T&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;F&nbsp;&nbsp;&nbsp;T&nbsp;E&nbsp;C&nbsp;H&nbsp;N&nbsp;O&nbsp;L&nbsp;O&nbsp;G&nbsp;Y</p>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="notice">
+                Please be advised that your chosen time slot is reserved <strong>30 minutes.</strong>
+            </div>
+            <div class="booking-section">
+                <div class="date-container">
+                    <h3>Date</h3>
+                    <p>To the extent possible, additional slots are made regularly.</p>
+                    <div class="date-section">
+                        <div class="calendar">
+                            <div class="month">
+                                <button id="prevMonth">&lt;</button>
+                                <span id="monthYear"></span>
+                                <button id="nextMonth">&gt;</button>
+                            </div>
+                            <div class="weekdays">
+                                <div>MO</div>
+                                <div>TU</div>
+                                <div>WE</div>
+                                <div>TH</div>
+                                <div>FR</div>
+                                <div>SA</div>
+                                <div>SU</div>
+                            </div>
+                            <div class="days">
+                                <!-- Days will be dynamically generated -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="time-section">
+                    <h3>Time</h3>
+                    <div class="times">
+                        <label><input type="radio" name="time" value="08:00-09:00"> 08:00 - 09:00 <span class="available">Available</span></label>
+                        <label><input type="radio" name="time" value="09:00-10:00"> 09:00 - 10:00 <span class="available">Available</span></label>
+                        <label><input type="radio" name="time" value="10:00-11:00" disabled> 10:00 - 11:00 <span class="fully-booked">Fully Booked</span></label>
+                        <label><input type="radio" name="time" value="11:00-12:00"> 11:00 - 12:00 <span class="available">Available</span></label>
+                        <label><input type="radio" name="time" value="01:00-02:00" disabled> 01:00 - 02:00 <span class="fully-booked">Fully Booked</span></label>
+                        <label><input type="radio" name="time" value="02:00-03:00" disabled> 02:00 - 03:00 <span class="fully-booked">Fully Booked</span></label>
+                        <label><input type="radio" name="time" value="03:00-04:00" disabled> 03:00 - 04:00 <span class="fully-booked">Fully Booked</span></label>
+                        <label><input type="radio" name="time" value="04:00-05:00"> 04:00 - 05:00 <span class="available">Available</span></label>
+                    </div>
+                </div>
+            </div>         
+        </div>
+        <div class="actions">
+            <button id="next-btn">Next</button>
+            <button id="cancel-btn">Cancel</button>
+        </div>
+    </main>
+    <script src="SchedulingPage.js"></script>
+</body>
+</html>

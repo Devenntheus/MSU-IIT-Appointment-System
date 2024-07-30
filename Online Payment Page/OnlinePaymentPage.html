@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Payment</title>
+    <link rel="stylesheet" href="OnlinePaymentPage.css">
+</head>
+<body>
+    <header>
+        <img src="../Images/msuiit-logo.png" alt="University Logo" class="logo">
+        <div class="header-text">
+            <p class="title">M&nbsp;I&nbsp;N&nbsp;D&nbsp;A&nbsp;N&nbsp;A&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;T&nbsp;A&nbsp;T&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;N&nbsp;I&nbsp;V&nbsp;E&nbsp;R&nbsp;S&nbsp;I&nbsp;T&nbsp;Y</p>
+            <p class="subtitle">I&nbsp;L&nbsp;I&nbsp;G&nbsp;A&nbsp;N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;N&nbsp;S&nbsp;T&nbsp;I&nbsp;T&nbsp;U&nbsp;T&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;F&nbsp;&nbsp;&nbsp;T&nbsp;E&nbsp;C&nbsp;H&nbsp;N&nbsp;O&nbsp;L&nbsp;O&nbsp;G&nbsp;Y</p>
+        </div>
+    </header>
+    <main>
+        <div class="payment-options">
+            <button class="payment-button">Online Payment</button>
+            <button class="payment-button">Over the counter</button>
+        </div>
+        <div class="payment-container">
+            <div class="qr-code-section">
+                <div class="alipay-logo">
+                    <img src="../Images/alipay-logo.png" alt="Alipay">
+                    <span>Powers payment by your e-wallet</span>
+                </div>
+                <h2>Scan QR Code to Pay</h2>
+                <p>Scan the QR code with a mobile payment app supported by Alipay+</p>
+                <img src="../Images/qr-code.png" alt="QR Code" class="qr-code">
+                <div class="upload-container">
+                    <label for="file-upload" class="file-upload-label">Upload Proof of Payment Screenshot</label>
+                    <input type="file" id="file-upload" class="file-upload">
+                </div>
+            </div>
+            <div class="summary-section">
+                <h2>Summary</h2>
+                <p><strong>Pay to:</strong> MSU-IIT Merchant</p>
+                <p><strong>Appointment Info:</strong> TOR Request</p>
+                <p><strong>Amount:</strong> PHP 800.00</p>
+                <p><strong>Transaction no.:</strong> 1418409741</p>
+                <p class="total-amount"><strong>Total to pay:</strong> PHP 800.00</p>
+            </div>
+        </div>
+        <div class="action-buttons">
+            <button class="next-button">Next</button>
+            <button class="cancel-button">Cancel</button>
+        </div>
+    </main>
+</body>
+</html>
