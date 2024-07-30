@@ -1,0 +1,148 @@
+body {
+    font-family: 'Noto Sans Tai Tham', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+    color: #636363;
+}
+
+header {
+    height: 120px;
+    background-color: #830006;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #FFFFFF;
+    position: relative;
+}
+
+.logo {
+    height: 100px;
+    position: absolute;
+    left: 20px;
+    margin-left: 10px;
+}
+
+.header-text {
+    text-align: center;
+    color: #ffffff;
+}
+
+header .title {
+    font-size: 35px;
+    margin: 0;
+    color: #F7D953;
+}
+
+header .subtitle {
+    font-size: 16px;
+    margin: 5px 0 0;
+}
+/* Title and subtitle styles */
+.title-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-title {
+    font-size: 34px;
+    color: #830006;
+    font-weight: bold;
+}
+
+.sub-title {
+    font-size: 22px;
+    color: #817878;
+    font-weight: bold;
+    margin-top: -30px;
+    margin-bottom: 50px;
+}
+
+.schoolCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 82%;
+}
+
+.card {
+    width: calc(33.33% - 20px); /* Adjusted to fit three cards in one row */
+    height: 110px;
+    background-color: #830006;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; /* Stack icon and content vertically */
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    padding-top: 20px;
+    cursor: pointer; /* Makes the card look clickable */
+    text-decoration: none; /* Removes underline from links */
+    display: block; /* Ensures the card is displayed as a block */
+}
+
+.card:hover {
+    background-color: #b66b6e; /* Add a hover effect if desired */
+    transform: scale(1.05); /* Slightly increase the size on hover */
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+.icon-content-container {
+    display: flex;
+    flex-direction: column; /* Stack icon and content vertically */
+    align-items: center; /* Center icon and content horizontally */
+    justify-content: center; /* Center icon and content vertically */
+}
+
+.icon {
+    width: 50px;
+    height: 40px;
+    color: black;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.content {
+    text-align: center; /* Center text horizontally */
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    width: 100%;
+}
+
+.label {
+    font-size: 20px;
+    color: #F7D953;
+}
+
+/* Adjust spacing for each card */
+.preliminary-registration-card, .advance-credit-card, .leave-absence-card, .document-request-card, .otr-f137a-card, .returnees-card, .shifters-card, .promissory-note-card,
+.academic-load-revision-card, .permit-cross-enroll-card, .request-validation-card, .completion-card {
+    margin-right: -30px; /* Adjust the value as needed */
+}
+
+.preliminaryRegistrationContent, .advanceCreditContent, .leaveAbsenceContent, .documentRequestContent, .otrF137aContent, .returneesContent, .shiftersContent, .promissoryNoteContent,
+.academicLoadRevisionContent, .permitCrossEnrollContent, .requestValidationContent, .completionContent {
+    font-size: 25px;
+    color: #F7D953;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-weight: bold;
+}
+
+
+
