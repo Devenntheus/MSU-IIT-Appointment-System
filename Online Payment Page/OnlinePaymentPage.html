@@ -16,30 +16,35 @@
     </header>
     <main>
         <div class="payment-options">
-            <button class="payment-button">Online Payment</button>
-            <button class="payment-button">Over the counter</button>
+            <button class="payment-button"><strong>Online Payment</strong></button>
+            <button class="payment-button"><strong>Over the counter</strong></button>
+        </div>
+        <div class="alipay-logo">
+            <img src="../Images/alipay-logo.png" alt="Alipay">
+            <span>Powers payment by your e-wallet</span>
         </div>
         <div class="payment-container">
             <div class="qr-code-section">
-                <div class="alipay-logo">
-                    <img src="../Images/alipay-logo.png" alt="Alipay">
-                    <span>Powers payment by your e-wallet</span>
-                </div>
                 <h2>Scan QR Code to Pay</h2>
                 <p>Scan the QR code with a mobile payment app supported by Alipay+</p>
-                <img src="../Images/qr-code.png" alt="QR Code" class="qr-code">
-                <div class="upload-container">
-                    <label for="file-upload" class="file-upload-label">Upload Proof of Payment Screenshot</label>
-                    <input type="file" id="file-upload" class="file-upload">
+                <div class="qr-upload-container">
+                    <img src="../Images/qr-code.png" alt="QR Code" class="qr-code">
+                    <div class="upload-container">
+                        <label for="file-upload" class="file-upload-label">Upload Proof of Payment Screenshot</label>
+                        <div class="file-upload-group">
+                            <input type="file" id="file-upload" class="file-upload">
+                            <span class="file-upload-status"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="summary-section">
                 <h2>Summary</h2>
-                <p><strong>Pay to:</strong> MSU-IIT Merchant</p>
-                <p><strong>Appointment Info:</strong> TOR Request</p>
-                <p><strong>Amount:</strong> PHP 800.00</p>
-                <p><strong>Transaction no.:</strong> 1418409741</p>
-                <p class="total-amount"><strong>Total to pay:</strong> PHP 800.00</p>
+                <p><span class="summary-label">Pay to:</span> <span class="summary-value">MSU-IIT Merchant</span></p>
+                <p><span class="summary-label">Appointment Info:</span> <span class="summary-value">TOR Request</span></p>
+                <p><span class="summary-label">Amount:</span> <span class="summary-value">PHP 800.00</span></p>
+                <p><span class="summary-label">Transaction no.:</span> <span class="summary-value">1418409741</span></p>
+                <p class="total-amount"><span class="summary-label">Total to pay:</span> <span class="summary-value">PHP 800.00</span></p>
             </div>
         </div>
         <div class="action-buttons">
