@@ -188,21 +188,25 @@ label {
 
 .actions {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 60px;
+    right: 85px;
     display: flex;
     gap: 10px;
 }
 
 button {
-    width: 150px;
-    height: 50px;
+    height: 55.56px;
+    width: 235.2px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
 }
 
 #next-btn {
     background-color: #ffd700;
-    color: white;
+    color: #676767;
     border: none;
     border-radius: 5px;
 }
