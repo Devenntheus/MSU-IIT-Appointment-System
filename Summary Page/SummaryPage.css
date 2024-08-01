@@ -1,0 +1,149 @@
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+header {
+    height: 120px;
+    background-color: #830006;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #FFFFFF;
+    position: relative;
+}
+
+.logo {
+    height: 100px;
+    position: absolute;
+    left: 20px;
+    margin-left: 10px;
+}
+
+.header-text {
+    text-align: center;
+    color: #ffffff;
+}
+
+header .title {
+    font-size: 35px;
+    margin: 0;
+    color: #F7D953;
+    letter-spacing: 0.2em;
+}
+
+header .subtitle {
+    font-size: 16px;
+    margin: 5px 0 0;
+    letter-spacing: 0.2em;
+}
+
+main {
+    margin-top: -40px;
+    padding: 40px 80px;
+}
+
+h1 {
+    text-align: center;
+    color: #830006;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+.transaction-details, .appointment-schedule, .payment, .personal-information, .contact-information, .address-information, .white-space {
+    margin-bottom: 20px;
+}
+
+.white-space h2 {
+    color: #FFFFFF; /* This makes the h2 text in the white-space class white */
+}
+
+
+.appointment-payment, .personal-contact-address {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.appointment-payment > div, .personal-contact-address > div {
+    width: 48%;
+}
+
+h2 {
+    color: #000000;
+    font-size: 24px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #830006;
+    padding-bottom: 5px;
+}
+
+p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.confirmation {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.confirmation label {
+    font-size: 14px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.submit-button,
+.cancel-button {
+    font-family: 'Poppins', sans-serif;
+    margin-top: 40px;
+    height: 55.56px;
+    width: 235.2px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-button {
+    background-color: #F7D953;
+    color: #676767;
+}
+
+.cancel-button {
+    background-color: #830006;
+    color: #FFF;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #830006;
+    border-radius: 6px;
+    border: 3px solid #FFFFFF;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #5a0004;
+}
