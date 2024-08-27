@@ -16,53 +16,61 @@
     </header>
     <main>
         <div class="container">
-            <div class="notice">
-                Please be advised that your chosen time slot is reserved <strong>30 minutes.</strong>
-            </div>
-            <div class="booking-section">
-                <div class="date-container">
-                    <h3>Date</h3>
-                    <p>To the extent possible, additional slots are made regularly.</p>
-                    <div class="date-section">
-                        <div class="calendar">
-                            <div class="month">
-                                <button id="prevMonth">&lt;</button>
-                                <span id="monthYear"></span>
-                                <button id="nextMonth">&gt;</button>
-                            </div>
-                            <div class="weekdays">
-                                <div>MO</div>
-                                <div>TU</div>
-                                <div>WE</div>
-                                <div>TH</div>
-                                <div>FR</div>
-                                <div>SA</div>
-                                <div>SU</div>
-                            </div>
-                            <div class="days">
-                                <!-- Days will be dynamically generated -->
+            <form id="appointment-form" method="POST">
+                <div class="notice">
+                    Please be advised that your chosen time slot is reserved <strong>30 minutes.</strong>
+                </div>
+                <div class="booking-section">
+                    <div class="date-container">
+                        <h3>Date</h3>
+                        <p>To the extent possible, additional slots are made regularly.</p>
+                        <div class="date-section">
+                            <div class="calendar">
+                                <div class="month">
+                                    <button type="button" id="prevMonth">&lt;</button>
+                                    <span id="monthYear"></span>
+                                    <button type="button" id="nextMonth">&gt;</button>
+                                </div>
+                                <div class="weekdays">
+                                    <div>MO</div>
+                                    <div>TU</div>
+                                    <div>WE</div>
+                                    <div>TH</div>
+                                    <div>FR</div>
+                                    <div>SA</div>
+                                    <div>SU</div>
+                                </div>
+                                <div class="days">
+                                    <!-- Days will be dynamically generated -->
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="time-section">
-                    <h3>Time</h3>
-                    <div class="times">
-                        <label><input type="radio" name="time" value="08:00-09:00"> 08:00 - 09:00 <span class="available">Available</span></label>
-                        <label><input type="radio" name="time" value="09:00-10:00"> 09:00 - 10:00 <span class="available">Available</span></label>
-                        <label><input type="radio" name="time" value="10:00-11:00" disabled> 10:00 - 11:00 <span class="fully-booked">Fully Booked</span></label>
-                        <label><input type="radio" name="time" value="11:00-12:00"> 11:00 - 12:00 <span class="available">Available</span></label>
-                        <label><input type="radio" name="time" value="01:00-02:00" disabled> 01:00 - 02:00 <span class="fully-booked">Fully Booked</span></label>
-                        <label><input type="radio" name="time" value="02:00-03:00" disabled> 02:00 - 03:00 <span class="fully-booked">Fully Booked</span></label>
-                        <label><input type="radio" name="time" value="03:00-04:00" disabled> 03:00 - 04:00 <span class="fully-booked">Fully Booked</span></label>
-                        <label><input type="radio" name="time" value="04:00-05:00"> 04:00 - 05:00 <span class="available">Available</span></label>
+                    <div class="time-section">
+                        <h3>Time</h3>
+                        <div class="times">
+                            <label><input type="radio" name="time" value="08:00-09:00" disabled> 08:00 - 09:00 <span class="status">Checking...</span></label>
+                            <label><input type="radio" name="time" value="09:00-10:00" disabled> 09:00 - 10:00 <span class="status">Checking...</span></label>
+                            <label><input type="radio" name="time" value="10:00-11:00" disabled> 10:00 - 11:00 <span class="status">Checking...</span></label>
+                            <label><input type="radio" name="time" value="11:00-12:00" disabled> 11:00 - 12:00 <span class="status">Checking...</span></label>
+                            <label><input type="radio" name="time" value="13:00-14:00" disabled> 13:00 - 14:00 <span class="status">Checking...</span></label>
+                            <label><input type="radio" name="time" value="14:00-15:00" disabled> 14:00 - 15:00 <span class="status">Checking...</span></label>
+                            <label><input type="radio" name="time" value="15:00-16:00" disabled> 15:00 - 16:00 <span class="status">Checking...</span></label>
+                            <label><input type="radio" name="time" value="16:00-17:00" disabled> 16:00 - 17:00 <span class="status">Checking...</span></label>
+                        </div>
                     </div>
                 </div>
-            </div>         
-        </div>
-        <div class="actions">
-            <button id="next-btn">Next</button>
-            <button id="cancel-btn">Cancel</button>
+                
+                <!-- Hidden input fields to store the selected date and time -->
+                <input type="hidden" id="selected-date" name="app_date">
+                <input type="hidden" id="selected-time-from" name="app_timeFrom">
+                <input type="hidden" id="selected-time-to" name="app_timeTo">
+
+                <div class="actions">
+                    <button type="button" id="next-btn">Next</button>
+                    <button type="button" id="cancel-btn">Cancel</button>
+                </div>
+            </form>
         </div>
     </main>
     <script src="SchedulingPage.js"></script>

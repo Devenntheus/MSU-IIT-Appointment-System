@@ -159,6 +159,11 @@ header .subtitle {
     color: red;
 }
 
+.partially-booked {
+    background-color: #FFBF00;
+    color: orange;
+}
+
 .selected {
     background-color: blue;
     color: white;
