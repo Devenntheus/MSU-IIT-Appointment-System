@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const prevMonthBtn = document.getElementById('prevMonth');
     const nextMonthBtn = document.getElementById('nextMonth');
 
+    const fullyBookedClass = 'fully-booked';
+    const partiallyBookedClass = 'partially-booked';
+    const availableClass = 'available';
+
     let currentDate = new Date();
     let selectedDate = null;
 
@@ -19,51 +23,71 @@ document.addEventListener('DOMContentLoaded', function () {
         const year = date.getFullYear();
         const firstDay = new Date(year, month, 1).getDay();
         const lastDay = new Date(year, month + 1, 0).getDate();
-
+    
         monthYearDisplay.textContent = `${date.toLocaleString('default', { month: 'long' })} ${year}`;
-
+    
         const adjustedFirstDay = (firstDay + 6) % 7;
-
+    
         for (let i = 0; i < adjustedFirstDay; i++) {
             const blankDay = document.createElement('div');
             blankDay.classList.add('blank');
             daysContainer.appendChild(blankDay);
         }
-
-        for (let day = 1; day <= lastDay; day++) {
-            const dayElement = document.createElement('div');
-            dayElement.textContent = day;
-
-            const formattedDate = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-
-            // Automatically select today's date
-            if (
-                day === currentDate.getDate() &&
-                month === currentDate.getMonth() &&
-                year === currentDate.getFullYear()
-            ) {
-                dayElement.classList.add('selected');
-                selectedDate = formattedDate;
-                selectedDateInput.value = formattedDate;
-
-                checkAvailability(formattedDate); // Automatically check availability for today's date
+    
+        // Fetch availability for all days of the month
+        fetch(`http://localhost:3001/api/checkMonthAvailability`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ year, month: month + 1 }) // month is 0-indexed in JS
+        })
+        .then(response => response.json())
+        .then(data => {
+            for (let day = 1; day <= lastDay; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.textContent = day;
+    
+                const formattedDate = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+                const dayOfWeek = new Date(formattedDate).getDay(); // Get day of week (0 = Sunday, 1 = Monday, etc.)
+    
+                // Exclude Saturdays (6) and Sundays (0) from being available
+                if (dayOfWeek === 0 || dayOfWeek === 6) {
+                    dayElement.classList.add('not-available'); // Add a class to indicate it's not available
+                } else if (data[formattedDate] && data[formattedDate].isFullyBooked) {
+                    dayElement.classList.add(fullyBookedClass);
+                } else {
+                    dayElement.classList.add(availableClass);
+                }
+    
+                // Automatically select today's date
+                if (
+                    day === currentDate.getDate() &&
+                    month === currentDate.getMonth() &&
+                    year === currentDate.getFullYear()
+                ) {
+                    dayElement.classList.add('selected');
+                    selectedDate = formattedDate;
+                    selectedDateInput.value = formattedDate;
+    
+                    checkAvailability(formattedDate); // Automatically check availability for today's date
+                }
+    
+                dayElement.addEventListener('click', function () {
+                    document.querySelectorAll('.days div').forEach(el => el.classList.remove('selected'));
+                    dayElement.classList.add('selected');
+    
+                    selectedDate = formattedDate;
+                    selectedDateInput.value = formattedDate;
+    
+                    checkAvailability(formattedDate); // Check availability when a date is selected
+                });
+    
+                daysContainer.appendChild(dayElement);
             }
-
-            dayElement.addEventListener('click', function () {
-                if (dayElement.classList.contains('fully-booked')) return;
-
-                document.querySelectorAll('.days div').forEach(el => el.classList.remove('selected'));
-                dayElement.classList.add('selected');
-
-                selectedDate = formattedDate;
-                selectedDateInput.value = formattedDate;
-
-                checkAvailability(formattedDate); // Check availability when a date is selected
-            });
-
-            daysContainer.appendChild(dayElement);
-        }
-    }
+        })
+        .catch(error => {
+            console.error('Error fetching month availability:', error);
+        });
+    }    
 
     function checkAvailability(date) {
         fetch(`http://localhost:3001/api/checkAvailability`, {

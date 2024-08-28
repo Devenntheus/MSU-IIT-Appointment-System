@@ -45,6 +45,52 @@ app.post('/api/checkAvailability', async (req, res) => {
     }
 });
 
+// Server endpoint to check availability for the entire month
+app.post('/api/checkMonthAvailability', async (req, res) => {
+    const { year, month } = req.body; // month is 1-indexed
+
+    try {
+        // Connect to the database
+        await sql.connect(dbConfig);
+
+        // Query to find all booked slots for the given month
+        const result = await sql.query`
+            SELECT app_date, app_timeFrom, app_timeTo
+            FROM Appointments
+            WHERE YEAR(app_date) = ${year} AND MONTH(app_date) = ${month}`;
+
+        // Organize bookings by date
+        const bookings = result.recordset.reduce((acc, row) => {
+            const date = row.app_date.toISOString().split('T')[0];
+            if (!acc[date]) acc[date] = [];
+            acc[date].push(`${row.app_timeFrom}-${row.app_timeTo}`);
+            return acc;
+        }, {});
+
+        // Check if each date in the month is fully booked
+        const daysInMonth = new Date(year, month, 0).getDate();
+        const monthAvailability = {};
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const date = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            const bookedSlots = bookings[date] || [];
+
+            // Assuming all time slots are 08:00-09:00 to 16:00-17:00 (8 slots)
+            const totalSlots = 8;
+            const isFullyBooked = bookedSlots.length === totalSlots;
+
+            monthAvailability[date] = { isFullyBooked };
+        }
+
+        res.json(monthAvailability);
+    } catch (err) {
+        console.error('Error checking month availability:', err);
+        res.status(500).json({ error: 'Failed to check month availability' });
+    } finally {
+        sql.close();
+    }
+});
+
 // Server endpoint where it submits the appointment to the registrar
 app.post('/api/submit', async (req, res) => {
     const {
