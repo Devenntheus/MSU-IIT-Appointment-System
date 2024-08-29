@@ -54,6 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     dayElement.classList.add('not-available'); // Add a class to indicate it's not available
                 } else if (data[formattedDate] && data[formattedDate].isFullyBooked) {
                     dayElement.classList.add(fullyBookedClass);
+                } else if (data[formattedDate] && data[formattedDate].isPartiallyBooked) {
+                    dayElement.classList.add(partiallyBookedClass);
                 } else {
                     dayElement.classList.add(availableClass);
                 }
@@ -97,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(data => {
+            // let fullyBookedCount = 0;
             document.querySelectorAll('.times label').forEach(label => {
                 const timeRange = label.querySelector('input').value.split('-');
                 const timeSlot = `${timeRange[0]}-${timeRange[1]}`;
@@ -106,12 +109,23 @@ document.addEventListener('DOMContentLoaded', function () {
                     label.querySelector('input').disabled = true;
                     statusSpan.textContent = 'Fully Booked';
                     statusSpan.className = 'fully-booked';
+                    // fullyBookedCount++;
                 } else {
                     label.querySelector('input').disabled = false;
                     statusSpan.textContent = 'Available';
                     statusSpan.className = 'available';
                 }
             });
+
+            // Check if 4 or more time slots are fully booked
+            // if (fullyBookedCount >= 4 && fullyBookedCount < 8) {
+            //     // Find the day element for the selected date and update its class
+            //     const dayElement = document.querySelector(`.days div.selected`);
+            //     if (dayElement) {
+            //         dayElement.classList.remove(fullyBookedClass, availableClass);
+            //         dayElement.classList.add(partiallyBookedClass);
+            //     }
+            // }
         })
         .catch(error => {
             console.error('Error fetching availability:', error);
