@@ -109,23 +109,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     label.querySelector('input').disabled = true;
                     statusSpan.textContent = 'Fully Booked';
                     statusSpan.className = 'fully-booked';
-                    // fullyBookedCount++;
                 } else {
                     label.querySelector('input').disabled = false;
                     statusSpan.textContent = 'Available';
                     statusSpan.className = 'available';
                 }
             });
-
-            // Check if 4 or more time slots are fully booked
-            // if (fullyBookedCount >= 4 && fullyBookedCount < 8) {
-            //     // Find the day element for the selected date and update its class
-            //     const dayElement = document.querySelector(`.days div.selected`);
-            //     if (dayElement) {
-            //         dayElement.classList.remove(fullyBookedClass, availableClass);
-            //         dayElement.classList.add(partiallyBookedClass);
-            //     }
-            // }
         })
         .catch(error => {
             console.error('Error fetching availability:', error);
