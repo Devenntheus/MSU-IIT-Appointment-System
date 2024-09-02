@@ -25,44 +25,71 @@
                 <div class="form-group">
                     <label for="student-id">Student ID No.</label>
                     <input type="text" id="student-id">
+                    <span class="error-message" id="error-id-number"></span>
                 </div>
                 <div class="form-group">
                     <label for="first-name">First Name</label>
                     <input type="text" id="first-name">
+                    <span class="error-message" id="error-first-name"></span>
                 </div>
                 <div class="form-group">
                     <label for="middle-name">Middle Name</label>
                     <input type="text" id="middle-name">
+                    <span class="error-message" id="error-middle-name"></span>
                 </div>
                 <div class="form-group">
                     <label for="last-name">Last Name</label>
                     <input type="text" id="last-name">
+                    <span class="error-message" id="error-last-name"></span>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
                     <label for="dob">Date of Birth</label>
                     <input type="date" id="dob">
-                </div>
-                <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <select id="gender">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+                    <span class="error-message" id="error-dob"></span>
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
                     <input type="text" id="age">
+                    <span class="error-message" id="error-age"></span>
                 </div>
                 <div class="form-group">
-                    <label for="course">Course</label>
-                    <select id="course">
-                        <option value="Information Technology">Information Technology</option>
-                        <option value="Computer Science">Computer Science</option>
-                        <option value="Civil Engineering">Civil Engineering</option>
-                        <option value="Electrical Engineering">Electrical Engineering</option>
+                    <label for="gender">Gender</label>
+                    <select id="gender">
+                        <option value="default">Please Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
                     </select>
+                    <span class="error-message" id="error-gender"></span>
+                </div>
+            </div>
+            <div class="form-row">   
+                <div class="form-group">
+                    <!-- Filter for College/Department -->
+                    <label for="filter-college-department">Department:</label>
+                    <select id="filter-college-department">
+                        <option value="default">- - - Select College/Department - - -</option>
+                        <option value="College of Arts & Social Sciences">College of Arts & Social Sciences</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="College of Science & Mathematics">College of Science & Mathematics</option>
+                        <option value="College of Science & Mathematics Graduate Programs">College of Science & Mathematics Graduate Programs</option>
+                        <option value="College of Education">College of Education</option>
+                        <option value="College of Business Administration & Accountancy">College of Business Administration & Accountancy</option>
+                        <option value="School of Computer Studies">School of Computer Studies</option>
+                        <option value="School of Engineering Technology">School of Engineering Technology</option>
+                        <option value="College of Nursing">College of Nursing</option>
+                        <option value="School of Graduate Studies">School of Graduate Studies</option>
+                    </select>   
+                    <span class="error-message" id="error-department"></span> 
+                </div>
+                <div class="form-group">
+                    <label for="filter-course">Course:</label>
+                    <select id="filter-course">
+                        <option value="default">- - - Select Course - - -</option>
+                    </select>
+                    <span class="error-message" id="error-course"></span> 
                 </div>
             </div>
             <h2>Contact Information</h2>
@@ -70,10 +97,12 @@
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email">
+                    <span class="error-message" id="error-email"></span>
                 </div>
                 <div class="form-group">
                     <label for="mobile-number">Mobile Number</label>
                     <input type="text" id="mobile-number">
+                    <span class="error-message" id="error-mobile-number"></span>
                 </div>
             </div>
             <h2>Address Information</h2>
@@ -81,23 +110,27 @@
                 <div class="form-group">
                     <label for="house-street">House/Street</label>
                     <input type="text" id="house-street">
+                    <span class="error-message" id="error-house-street"></span>
                 </div>
                 <div class="form-group">
                     <label for="barangay">Barangay</label>
                     <input type="text" id="barangay">
+                    <span class="error-message" id="error-barangay"></span>
                 </div>
                 <div class="form-group">
                     <label for="city">Municipality/City</label>
                     <input type="text" id="city">
+                    <span class="error-message" id="error-city"></span>
                 </div>
                 <div class="form-group">
                     <label for="province">Province</label>
                     <input type="text" id="province">
+                    <span class="error-message" id="error-province"></span>
                 </div>
             </div>
             <div class="form-buttons">
-                <button type="button" class="next-button">Next</button>
-                <button type="button" class="cancel-button">Cancel</button>
+                <button type="submit" id="next" class="next-button">Next</button>
+                <button type="button" id="cancel" class="cancel-button">Cancel</button>
             </div>
         </form>
     </main>

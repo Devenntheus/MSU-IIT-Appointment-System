@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const dob = sessionStorage.getItem('dob');
     const gender = sessionStorage.getItem('gender');
     const age = sessionStorage.getItem('age');
+    const department = sessionStorage.getItem('department');
     const course = sessionStorage.getItem('course');
     const email = sessionStorage.getItem('email');
     const mobileNumber = sessionStorage.getItem('mobileNumber');
@@ -61,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dob,
             gender,
             age,
+            department,
             course,
             email,
             mobileNumber,
