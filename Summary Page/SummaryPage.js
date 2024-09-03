@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const barangay = sessionStorage.getItem('barangay');
     const city = sessionStorage.getItem('city');
     const province = sessionStorage.getItem('province');
+    const docFileName = sessionStorage.getItem('docFileName');
+    const documentContents = sessionStorage.getItem('document');
 
     // Display retrieved data
     document.getElementById('transaction-type').textContent = transactionType;
@@ -50,37 +52,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Set up the submit button to send data
     document.querySelector('.submit-button').addEventListener('click', function () {
-        const requestData = {
-            appointmentID,
-            transactionType,
-            appointmentDate,
-            timeFrom,
-            timeTo,
-            firstName,
-            middleName,
-            lastName,
-            dob,
-            gender,
-            age,
-            department,
-            course,
-            email,
-            mobileNumber,
-            houseStreet,
-            barangay,
-            city,
-            province,
-            status: 'Pending'
-        };
+        const formData = new FormData();
 
-        console.log('Data to be sent:', requestData);
+        formData.append('appointmentID', appointmentID);
+        formData.append('transactionType', transactionType);
+        formData.append('appointmentDate', appointmentDate);
+        formData.append('timeFrom', timeFrom);
+        formData.append('timeTo', timeTo);
+        formData.append('firstName', firstName);
+        formData.append('middleName', middleName);
+        formData.append('lastName', lastName);
+        formData.append('dob', dob);
+        formData.append('gender', gender);
+        formData.append('age', age);
+        formData.append('department', department);
+        formData.append('course', course);
+        formData.append('email', email);
+        formData.append('mobileNumber', mobileNumber);
+        formData.append('houseStreet', houseStreet);
+        formData.append('barangay', barangay);
+        formData.append('city', city);
+        formData.append('province', province);
+        formData.append('status', 'Pending');
+
+        // Convert documentContents from base64 to Blob
+        const byteCharacters = atob(documentContents.split(',')[1]);
+        const byteNumbers = new Array(byteCharacters.length).fill().map((_, i) => byteCharacters.charCodeAt(i));
+        const byteArray = new Uint8Array(byteNumbers);
+        const documentBlob = new Blob([byteArray], { type: 'application/pdf' });
+
+        formData.append('document', documentBlob, docFileName);
 
         fetch('http://localhost:3001/api/submit', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestData)
+            body: formData
         })
         .then(response => response.json())
         .then(data => {

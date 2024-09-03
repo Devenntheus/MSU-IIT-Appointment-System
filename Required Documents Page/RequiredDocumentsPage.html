@@ -29,11 +29,11 @@
 
             <div class="document-download">
                 <i class="fas fa-file-alt"></i>
-                <input type="text" value="FM-MSU-IIT-RGTR-008 Academic Load Revision Permit Form Template.docx" readonly onclick="triggerDownload()">
-                <a href="../path/to/file/FM-MSU-IIT-RGTR-008_Academic_Load_Revision_Permit_Form_Template.docx" download>
+                <input type="text" value="" readonly>
+                <a id="download-link" href="#" download>
                     <i class="fas fa-cloud-download-alt download-icon"></i>
                 </a>
-            </div>
+            </div>            
 
             <div class="file-upload-section">
                 <div class="upload-box">
@@ -44,19 +44,18 @@
                 <input type="file" class="file-input">
             </div>
 
-            <div class="upload-progress">
+            <div class="upload-progress" id="upload-progress">
                 <i class="fas fa-file-alt"></i>
                 <div class="upload-content">
                     <div class="upload-details">
-                        <span class="file-name">FM-MSU-IIT-RGTR-008 Academic Load Revision Permit.docx</span>
-                        <span class="progress-percentage">50%</span>
+                        <span id="progress-file-name">No file selected</span>
+                        <span id="progress-percentage">0%</span>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress" style="width: 50%;"></div>
+                        <div id="progress-bar" class="progress" style="width: 0%;"></div>
                     </div>
                 </div>
             </div>
-                       
         </div>
 
         <div class="actions">

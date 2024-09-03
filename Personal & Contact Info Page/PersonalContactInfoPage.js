@@ -312,23 +312,23 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isValid) {
             // Store values in session storage
             sessionStorage.setItem('studentId', studentId);
-            sessionStorage.setItem('firstName', firstName);
-            sessionStorage.setItem('middleName', middleName);
-            sessionStorage.setItem('lastName', lastName);
-            sessionStorage.setItem('dob', dob);
-            sessionStorage.setItem('gender', gender);
-            sessionStorage.setItem('age', age);
-            sessionStorage.setItem('department', department);
-            sessionStorage.setItem('course', course);
-            sessionStorage.setItem('email', email);
+            sessionStorage.setItem('firstName', firstNameValue);
+            sessionStorage.setItem('middleName', middleNameValue);
+            sessionStorage.setItem('lastName', lastNameValue);
+            sessionStorage.setItem('dob', dobValue);
+            sessionStorage.setItem('gender', genderValue);
+            sessionStorage.setItem('age', ageValue);
+            sessionStorage.setItem('department', departmentValue);
+            sessionStorage.setItem('course', courseValue);
+            sessionStorage.setItem('email', emailValue);
             sessionStorage.setItem('mobileNumber', mobileNumber);
             sessionStorage.setItem('houseStreet', houseStreet);
             sessionStorage.setItem('barangay', barangay);
             sessionStorage.setItem('city', city);
             sessionStorage.setItem('province', province);
 
-            // Redirect to SummaryPage.html
-            window.location.href = '../Summary Page/SummaryPage.html';
+            // Redirect to Required Document Page
+            window.location.href = '../Required Documents Page/RequiredDocumentsPage.html';
         }
     });
 });

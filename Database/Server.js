@@ -2,10 +2,20 @@ const express = require('express');
 const sql = require('mssql');
 const app = express();
 const cors = require('cors');
+const multer = require('multer');
+const bodyParser = require('body-parser');
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Configure body-parser to handle URL-encoded and JSON payloads
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// Configure Multer for file upload
+const storage = multer.memoryStorage(); // Store files in memory as Buffer objects
+const upload = multer({ storage });
 
 const dbConfig = {
     server: '192.168.68.94',
@@ -18,6 +28,15 @@ const dbConfig = {
         enableArithAbort: true
     }
 };
+
+// Connection pool
+sql.connect(dbConfig, err => {
+    if (err) {
+        console.error('Database connection failed:', err);
+    } else {
+        console.log('Database connected');
+    }
+});
 
 // Server endpoint where it check the availability of the selected date and time
 app.post('/api/checkAvailability', async (req, res) => {
@@ -93,8 +112,41 @@ app.post('/api/checkMonthAvailability', async (req, res) => {
     }
 });
 
-// Server endpoint where it submits the appointment to the registrar
-app.post('/api/submit', async (req, res) => {
+app.post('/api/checkDocument', async (req, res) => {
+    const transactionType = req.body.transactionType;
+
+    try {
+        console.log('Transaction Type:', transactionType); // Log received transaction type
+
+        const pool = await sql.connect(dbConfig); // Ensure the connection pool is used
+        const query = `SELECT trans_documentFileName, trans_documentFile FROM TransactionDocuments WHERE trans_type = @transactionType`;
+        const request = new sql.Request(pool); // Pass the connection pool to the request
+        request.input('transactionType', sql.VarChar, transactionType);
+
+        const result = await request.query(query);
+        console.log('Query Result:', result); // Log query result
+
+        if (result.recordset.length > 0) {
+            const document = result.recordset[0];
+            const documentFileName = document.trans_documentFileName;
+            const documentFile = document.trans_documentFile;
+
+            res.json({
+                fileName: documentFileName,
+                file: documentFile.toString('base64')
+            });
+        } else {
+            console.log('Document not found for transaction type:', transactionType); // Log when no document is found
+            res.status(404).json({ message: 'Document not found' });
+        }
+    } catch (err) {
+        console.error('Error querying database:', err);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Endpoint to handle form submission and file upload
+app.post('/api/submit', upload.single('document'), async (req, res) => {
     const {
         appointmentID,
         transactionType,
@@ -107,6 +159,7 @@ app.post('/api/submit', async (req, res) => {
         dob,
         gender,
         age,
+        department,
         course,
         email,
         mobileNumber,
@@ -114,17 +167,42 @@ app.post('/api/submit', async (req, res) => {
         barangay,
         city,
         province,
-        document,
-        docFileName,
         status
     } = req.body;
+
+    const documentContents = req.file;
 
     try {
         // Connect to the database
         await sql.connect(dbConfig);
 
-        // Insert data into the Appointments table
-        await sql.query`
+        // Prepare the request with parameters
+        const request = new sql.Request();
+        request.input('appointmentID', sql.VarChar, appointmentID);
+        request.input('transactionType', sql.VarChar, transactionType);
+        request.input('appointmentDate', sql.Date, appointmentDate);
+        request.input('timeFrom', sql.VarChar, timeFrom);
+        request.input('timeTo', sql.VarChar, timeTo);
+        request.input('firstName', sql.VarChar, firstName);
+        request.input('middleName', sql.VarChar, middleName);
+        request.input('lastName', sql.VarChar, lastName);
+        request.input('dob', sql.Date, dob);
+        request.input('gender', sql.VarChar, gender);
+        request.input('age', sql.Int, age);
+        request.input('department', sql.VarChar, department);
+        request.input('course', sql.VarChar, course);
+        request.input('email', sql.VarChar, email);
+        request.input('mobileNumber', sql.VarChar, mobileNumber);
+        request.input('houseStreet', sql.VarChar, houseStreet);
+        request.input('barangay', sql.VarChar, barangay);
+        request.input('city', sql.VarChar, city);
+        request.input('province', sql.VarChar, province);
+        request.input('docFileName', sql.VarChar, documentContents.originalname);
+        request.input('documentContents', sql.VarBinary, documentContents.buffer);
+        request.input('status', sql.VarChar, status);
+
+        // Execute the SQL query with the provided parameters
+        await request.query(`
             INSERT INTO Appointments (
                 app_ID,
                 app_transactionType,
@@ -137,6 +215,7 @@ app.post('/api/submit', async (req, res) => {
                 app_DOB,
                 app_gender,
                 app_age,
+                app_collegeDepartment,
                 app_course,
                 app_email,
                 app_mobileNumber,
@@ -144,28 +223,34 @@ app.post('/api/submit', async (req, res) => {
                 app_barangay,
                 app_municipalityCity,
                 app_province,
+                app_docFileName,
+                app_document,
                 app_status
             ) VALUES (
-                ${appointmentID},
-                ${transactionType},
-                ${appointmentDate},
-                ${timeFrom},
-                ${timeTo},
-                ${firstName},
-                ${middleName},
-                ${lastName},
-                ${dob},
-                ${gender},
-                ${age},
-                ${course},
-                ${email},
-                ${mobileNumber},
-                ${houseStreet},
-                ${barangay},
-                ${city},
-                ${province},
-                ${status}
-            )`;
+                @appointmentID,
+                @transactionType,
+                @appointmentDate,
+                @timeFrom,
+                @timeTo,
+                @firstName,
+                @middleName,
+                @lastName,
+                @dob,
+                @gender,
+                @age,
+                @department,
+                @course,
+                @email,
+                @mobileNumber,
+                @houseStreet,
+                @barangay,
+                @city,
+                @province,
+                @docFileName,
+                @documentContents,
+                @status
+            )
+        `);
 
         // Send a success response
         res.json({ success: true, appointmentID });

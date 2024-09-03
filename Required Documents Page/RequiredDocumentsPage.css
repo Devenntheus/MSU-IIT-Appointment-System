@@ -179,6 +179,25 @@ header .subtitle {
 }
 
 .upload-content {
+    flex: 1;
+}
+
+.progress-bar {
+    background-color: #F5D4D7;
+    border-radius: 5px;
+    height: 20px;
+    width: 100%; /* Full width of the container */
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress {
+    background-color: #FF6F6F;
+    height: 100%;
+    transition: width 1s ease-in-out; /* Smooth transition */
+}
+
+.upload-content {
     flex-grow: 1;
 }
 
