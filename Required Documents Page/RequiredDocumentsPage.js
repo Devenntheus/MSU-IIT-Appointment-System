@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const reader = new FileReader();
             let progress = 0;
+            let progressBar = 0;
 
             reader.onload = function(e) {
                 fileContent = e.target.result;
@@ -60,12 +61,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const interval = setInterval(function() {
                     if (progress < 100) {
                         progress += 1; // Increase progress by 1%
-                        updateProgressBar(progress);
+                        progressBar += 20; // Increase progress bar by 20%
+                        updateProgress(progress);
+                        updateProgressBarPercentage(progressBar);
                     } else {
                         clearInterval(interval);
-                        updateProgressBar(100); // Ensure it ends at 100%
+                        updateProgress(100); // Ensure it ends at 100%
                     }
-                }, 30); // Update progress every 100ms
+                }, 30); // Update progress every 30ms
             };
 
             reader.onerror = function(e) {
@@ -77,9 +80,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    function updateProgressBar(percent) {
-        progressPercentage.textContent = `${percent}%`;
+    function updateProgressBarPercentage(percent) {
         progressBar.style.width = `${percent}%`;
+    }
+
+    function updateProgress(percent) {
+        progressPercentage.textContent = `${percent}%`;     
     }
 
     nextBtn.addEventListener('click', function() {
