@@ -23,39 +23,25 @@
             <h2>Personal Information</h2>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="student-id">Student ID No.</label>
-                    <input type="text" id="student-id">
-                    <span class="error-message" id="error-id-number"></span>
-                </div>
-                <div class="form-group">
-                    <label for="first-name">First Name</label>
+                    <label for="first-name">First Name <span style="color: red;">*</span> </label> 
                     <input type="text" id="first-name">
                     <span class="error-message" id="error-first-name"></span>
                 </div>
+
                 <div class="form-group">
-                    <label for="middle-name">Middle Name</label>
-                    <input type="text" id="middle-name">
-                    <span class="error-message" id="error-middle-name"></span>
-                </div>
-                <div class="form-group">
-                    <label for="last-name">Last Name</label>
+                    <label for="last-name">Last Name <span style="color: red;">*</span></label>
                     <input type="text" id="last-name">
                     <span class="error-message" id="error-last-name"></span>
                 </div>
-            </div>
-            <div class="form-row">
+
                 <div class="form-group">
-                    <label for="dob">Date of Birth</label>
-                    <input type="date" id="dob">
-                    <span class="error-message" id="error-dob"></span>
+                    <label for="middle-name">Middle Name <span style="color: red;">*</span></label>
+                    <input type="text" id="middle-name">
+                    <span class="error-message" id="error-middle-name"></span>
                 </div>
+
                 <div class="form-group">
-                    <label for="age">Age</label>
-                    <input type="text" id="age">
-                    <span class="error-message" id="error-age"></span>
-                </div>
-                <div class="form-group">
-                    <label for="gender">Gender</label>
+                    <label for="gender">Gender <span style="color: red;">*</span></label>
                     <select id="gender">
                         <option value="default">Please Select Gender</option>
                         <option value="Male">Male</option>
@@ -65,65 +51,76 @@
                     <span class="error-message" id="error-gender"></span>
                 </div>
             </div>
-            <div class="form-row">   
+
+
+            <div class="form-row">
                 <div class="form-group">
-                    <!-- Filter for College/Department -->
-                    <label for="filter-college-department">Department:</label>
-                    <select id="filter-college-department">
-                        <option value="default">- - - Select College/Department - - -</option>
-                        <option value="College of Arts & Social Sciences">College of Arts & Social Sciences</option>
-                        <option value="Engineering">Engineering</option>
-                        <option value="College of Science & Mathematics">College of Science & Mathematics</option>
-                        <option value="College of Science & Mathematics Graduate Programs">College of Science & Mathematics Graduate Programs</option>
-                        <option value="College of Education">College of Education</option>
-                        <option value="College of Business Administration & Accountancy">College of Business Administration & Accountancy</option>
-                        <option value="School of Computer Studies">School of Computer Studies</option>
-                        <option value="School of Engineering Technology">School of Engineering Technology</option>
-                        <option value="College of Nursing">College of Nursing</option>
-                        <option value="School of Graduate Studies">School of Graduate Studies</option>
-                    </select>   
-                    <span class="error-message" id="error-department"></span> 
+                    <label for="dob">Date of Birth <span style="color: red;">*</span></label>
+                    <input type="date" id="dob">
+                    <span class="error-message" id="error-dob"></span>
                 </div>
                 <div class="form-group">
-                    <label for="filter-course">Course:</label>
-                    <select id="filter-course">
-                        <option value="default">- - - Select Course - - -</option>
-                    </select>
-                    <span class="error-message" id="error-course"></span> 
+                    <label for="age">Age <span style="color: red;">*</span></label>
+                    <input type="text" id="age">
+                    <span class="error-message" id="error-age"></span>
+                </div>
+                <div class="form-group">
+                    <label for="place-of-birth">Place of Birth (City/Town, Province) <span style="color: red;">*</span></label>
+                    <input type="text" id="place-of-birth" class="form-control" placeholder="e.g., Iligan City, Lanao del Norte">
+                    <span class="error-message" id="error-place-of-birth"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="citizenship">Citizenship <span style="color: red;">*</span></label>
+                    <input type="text" id="citizenship">
+                    <span class="error-message" id="error-citizenship"></span>
                 </div>
             </div>
+            
             <h2>Contact Information</h2>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">Email <span style="color: red;">*</span></label>
                     <input type="email" id="email">
                     <span class="error-message" id="error-email"></span>
                 </div>
                 <div class="form-group">
-                    <label for="mobile-number">Mobile Number</label>
+                    <label for="mobile-number">Mobile Number <span style="color: red;">*</span></label>
                     <input type="text" id="mobile-number">
                     <span class="error-message" id="error-mobile-number"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsApp-number">WhatsApp Number</label>
+                    <input type="text" id="whatsApp-number">
+                    <span class="error-message" id="error-whatsApp-number"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="telegram-number">Telegram Number</label>
+                    <input type="text" id="telegram-number">
+                    <span class="error-message" id="error-telegram-number"></span>
                 </div>
             </div>
             <h2>Address Information</h2>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="house-street">House/Street</label>
+                    <label for="house-street">House/Street <span style="color: red;">*</span></label>
                     <input type="text" id="house-street">
                     <span class="error-message" id="error-house-street"></span>
                 </div>
                 <div class="form-group">
-                    <label for="barangay">Barangay</label>
+                    <label for="barangay">Barangay <span style="color: red;">*</span></label>
                     <input type="text" id="barangay">
                     <span class="error-message" id="error-barangay"></span>
                 </div>
                 <div class="form-group">
-                    <label for="city">Municipality/City</label>
+                    <label for="city">Municipality/City <span style="color: red;">*</span></label>
                     <input type="text" id="city">
                     <span class="error-message" id="error-city"></span>
                 </div>
                 <div class="form-group">
-                    <label for="province">Province</label>
+                    <label for="province">Province <span style="color: red;">*</span></label>
                     <input type="text" id="province">
                     <span class="error-message" id="error-province"></span>
                 </div>

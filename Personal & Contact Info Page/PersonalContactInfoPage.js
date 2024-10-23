@@ -1,14 +1,38 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const firstName = document.getElementById('first-name');
-    const middleName = document.getElementById('middle-name');
-    const lastName = document.getElementById('last-name');
+    const firstNameField = document.getElementById('first-name');
+    const lastNameField = document.getElementById('last-name');
+    const middleNameField = document.getElementById('middle-name');
+    const genderSelect = document.getElementById('gender');
+
     const dobField = document.getElementById('dob');
     const ageField = document.getElementById('age');
+    const placeOfBirthField = document.getElementById('place-of-birth');
+    const citizenshipField = document.getElementById('citizenship');
+
     const emailField = document.getElementById('email');
-    const emailError = document.getElementById('error-email');
-    const departmentSelect = document.getElementById('filter-college-department');
-    const courseSelect = document.getElementById('filter-course');
+    const mobileNumberField = document.getElementById('mobile-number');
+    const whatsappNumberField = document.getElementById('whatsApp-number');
+    const telegramNumberField = document.getElementById('telegram-number');
+    
+    const houseStreetField = document.getElementById('house-street');
+    const barangayField = document.getElementById('barangay');
+    const municipalityCityField = document.getElementById('city');
+    const provinceField = document.getElementById('province');
+
+
     const nextButton = document.getElementById('next');
+
+    const emailError = document.getElementById('error-email');
+    const placeOfBirthError = document.getElementById('error-place-of-birth');
+    const mobileError = document.getElementById('error-mobile-number');
+    const whatsappError = document.getElementById('error-whatsapp-number');
+    const telegramError = document.getElementById('error-telegram-number');
+    
+    // Simple validation pattern: "City/Town, Province"
+    const pattern = /^[a-zA-Z\s]+,\s?[a-zA-Z\s]+$/;
+
+    // Phone number validation pattern
+    const phonePattern = /^\+63 9\d{2} \d{3} \d{4}$/; // Adjust this regex according to your format
 
     // Capitalize Words
     function capitalizeWords(input) {
@@ -21,9 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    addCapitalizationListener(firstName);
-    addCapitalizationListener(middleName);
-    addCapitalizationListener(lastName);
+    addCapitalizationListener(firstNameField);
+    addCapitalizationListener(lastNameField);
+    addCapitalizationListener(middleNameField);
 
     // Display calculated age
     dobField.addEventListener('change', function() {
@@ -44,6 +68,27 @@ document.addEventListener('DOMContentLoaded', function () {
         
         return age;
     }
+    
+    addCapitalizationListener(placeOfBirthField);
+
+    // Place of Birth validation
+    placeOfBirthField.addEventListener('input', function() {
+        const placeOfBirthInput = this.value;
+        
+        
+        if (!pattern.test(placeOfBirthInput)) {
+            placeOfBirthError.textContent = "Valid place of birth is required*";
+            placeOfBirthError.style.display = 'inline-block';
+            placeOfBirthError.style.color = 'red';
+            placeOfBirthField.classList.add('error-border');
+        } else {
+            placeOfBirthError.textContent = ""; // Clear error message if valid
+            placeOfBirthError.style.display = 'none';
+            placeOfBirthField.classList.remove('error-border');
+        }
+    });
+
+    addCapitalizationListener(citizenshipField);
 
     // Live validation for the email
     emailField.addEventListener('input', function() {
@@ -64,146 +109,114 @@ document.addEventListener('DOMContentLoaded', function () {
         return emailRegex.test(email);
     }
 
-    departmentSelect.addEventListener('change', function() {
-        const selectedDepartment = this.value;
-        updateCourses(selectedDepartment);
-    });
+    // Function to format the input to the required phone number format
+    function formatPhoneNumber(value) {
+        // Remove everything except digits
+        const digits = value.replace(/\D/g, '');
 
-    function updateCourses(department) {
-        courseSelect.innerHTML = '<option value="default">- - - Select Course - - -</option>'; // Reset options
-
-        if (departmentCourses[department]) {
-            departmentCourses[department].forEach(course => {
-                const option = document.createElement('option');
-                option.value = course;
-                option.textContent = course;
-                courseSelect.appendChild(option);
-            });
+        // Check if input starts with '0'
+        if (digits.length === 0) return '+63';
+        if (digits[0] === '0' || digits[0] === digits.substring(0)) {
+            // If the first digit is 0, replace it with '+63'
+            return '+63' + (digits.length > 1 ? digits.substring(1, 2) : '') + ' ';
         }
+
+        let formattedValue = '+';
+        if (digits.length >= 1) {
+            formattedValue += digits[0]; // Add the first number
+        }
+        if (digits.length > 1) {
+            formattedValue += digits.substring(1, 2) ; // Next three digits (9##)
+        }
+        if (digits.length >= 2) {
+            formattedValue += ' ' + digits.substring(2, 5); // Next three digits (###)
+        }
+        if (digits.length >= 5) {
+            formattedValue += ' ' + digits.substring(5, 8); // Last four digits (####)
+        }
+        if (digits.length >= 8) {
+            formattedValue += ' ' + digits.substring(8, 12); // Last four digits (####)
+        }
+
+        return formattedValue.trim();
     }
 
-    const departmentCourses = {
-        'College of Arts & Social Sciences': [
-            'GENERAL EDUCATION PROGRAM',
-            'BACHELOR OF ARTS IN ENGLISH',
-            'BACHELOR OF SCIENCE IN PSYCHOLOGY',
-            'BACHELOR OF ARTS IN FILIPINO',
-            'BACHELOR OF ARTS IN HISTORY',
-            'BACHELOR OF ARTS IN POLITICAL SCIENCE'
-        ],
-        'Engineering': [
-            'DIPLOMA IN CHEMICAL ENGINEERING TECHNOLOGY',
-            'BACHELOR OF SCIENCE IN CIVIL ENGINEERING',
-            'BACHELOR OF SCIENCE IN CERAMICS ENGINEERING',
-            'BACHELOR OF SCIENCE IN CHEMICAL ENGINEERING',
-            'BACHELOR OF SCIENCE IN COMPUTER ENGINEERING',
-            'BACHELOR OF SCIENCE IN ELECTRONICS & COMMUNICATIONS ENGINEERING',
-            'BACHELOR OF SCIENCE IN ELECTRICAL ENGINEERING',
-            'BACHELOR OF SCIENCE IN MINING ENG\'G.',
-            'BACHELOR OF SCIENCE IN ENVIRONMENTAL ENGINEERING TECHNOLOGY',
-            'BACHELOR OF SCIENCE IN MECHANICAL ENGINEERING',
-            'BACHELOR OF SCIENCE METALLURGICAL ENGINEERING'
-        ],
-        'College of Science & Mathematics': [
-            'BACHELOR OF SCIENCE IN BIOLOGY (BOTANY)',
-            'BACHELOR OF SCIENCE IN CHEMISTRY',
-            'BACHELOR OF SCIENCE IN MATHEMATICS',
-            'BACHELOR OF SCIENCE IN PHYSICS',
-            'BACHELOR OF SCIENCE IN BIOLOGY (ZOOLOGY)',
-            'BACHELOR OF SCIENCE IN BIOLOGY (MARINE)',
-            'BACHELOR OF SCIENCE IN BIOLOGY (GENERAL)',
-            'BACHELOR OF SCIENCE IN STATISTICS'
-        ],
-        'College of Science & Mathematics Graduate Programs': [
-            'MASTER OF SCIENCE IN PHYSICS',
-            'MASTER OF SCIENCE IN MARINE BIOLOGY',
-            'DOCTOR OF PHILOSOPHY IN CHEMISTRY',
-            'MASTER OF SCIENCE IN MATHEMATICS',
-            'MASTER OF SCIENCE IN CHEMISTRY',
-            'MASTER OF SCIENCE IN ENVIRONMENTAL SCIENCE',
-            'MASTER OF SCIENCE IN BIOLOGY',
-            'MASTER OF PHYSICS',
-            'DOCTOR OF PHILOSOPHY IN MATHEMATICS',
-            'MASTER OF MATHEMATICS',
-            'MASTER OF APPLIED STATISTICS',
-            'DOCTOR OF PHILOSOPHY IN PHYSICS',
-            'DOCTOR OF PHILOSOPHY MAJOR IN BIOLOGY',
-            'MASTER OF SCIENCE IN STATISTICS'
-        ],
-        'College of Education': [
-            'BACHELOR OF SECONDARY EDUCATION (BIOLOGY)',
-            'BACHELOR OF SCIENCE IN INDUSTRIAL EDUCATION (DRAFTING)',
-            'BACHELOR OF SECONDARY EDUCATION (CHEMISTRY)',
-            'BACHELOR OF SECONDARY EDUCATION (PHYSICS)',
-            'BACHELOR OF SECONDARY EDUCATION (MATHEMATICS)',
-            'BACHELOR OF SECONDARY EDUCATION (MAPEH)',
-            'CERTIFICATE PROGRAM FOR TEACHERS',
-            'BACHELOR OF SECONDARY EDUCATION (TLE)',
-            'BACHELOR OF SECONDARY EDUCATION (GENERAL SCIENCE)',
-            'BACHELOR OF ELEMENTARY EDUCATION (ENGLISH)',
-            'BACHELOR OF ELEMENTARY EDUCATION (SCIENCE AND HEALTH)',
-            'BACHELOR OF SCIENCE IN TECHNOLOGY TEACHER EDUCATION (INDUSTRIAL TECH)',
-            'BACHELOR OF SCIENCE IN TECHNOLOGY TEACHER EDUCATION (DRAFTING TECH)'
-        ],
-        'College of Business Administration & Accountancy': [
-            'BACHELOR OF SCIENCE IN BUSINESS ADMINISTRATION (BUSINESS ECONOMICS)',
-            'BACHELOR OF SCIENCE IN BUSINESS ADMINISTRATION (ECONOMICS)',
-            'BACHELOR OF SCIENCE IN BUSINESS ADMINISTRATION (ENTREPRENEURIAL MARKETING)',
-            'BACHELOR OF SCIENCE IN HOTEL AND RESTAURANT MANAGEMENT',
-            'BACHELOR OF SCIENCE IN ACCOUNTANCY'
-        ],
-        'School of Computer Studies': [
-            'DIPLOMA IN ELECTRONICS ENGINEERING TECH (COMPUTER ELECTRONICS)',
-            'BACHELOR OF SCIENCE IN INFORMATION SYSTEMS',
-            'BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY',
-            'DIPLOMA IN ELECTRONICS TECHNOLOGY',
-            'DIPLOMA IN ELECTRONICS ENGINEERING TECH (COMMUNICATION ELECTRONICS)',
-            'BACHELOR OF SCIENCE IN COMPUTER SCIENCE',
-            'BACHELOR OF SCIENCE IN ELECTRONICS AND COMPUTER TECHNOLOGY (EMBEDDED SYSTEMS)',
-            'BACHELOR OF SCIENCE IN ELECTRONICS AND COMPUTER TECHNOLOGY (COMMUNICATIONS SYSTEM)'
-        ],
-        'School of Engineering Technology': [
-            'DIPLOMA IN INDUSTRIAL AUTOMATION MAINTENANCE TECHOLOGY',
-            'DIPLOMA IN AUTOMOTIVE ENGINEERING TECHNOLOGY',
-            'DIPLOMA IN ELECTRICAL ENGINEERING TECHNOLOGY',
-            'DIPLOMA IN MECHANICAL ENGINEERING TECHNOLOGY',
-            'DIPLOMA IN CIVIL ENGINEERING TECHNOLOGY',
-            'BACHELOR OF SCIENCE IN INDUSTRIAL AUTOMATION & MECHATRONICS',
-            'MATERIAL SCIENCE & ENGINEERING TECHNOLOGY',
-            'BACHELOR OF SCIENCE IN ENGINEERING TECHNOLOGY MANAGEMENT',
-            'DIPLOMA IN INDUSTRIAL AUTOMATION & CONTROL ENGINEERING TECHNOLOGY',
-            'DIPLOMA IN HEATING, VENTILATING, AIR-CONDITIONING & REFRIGERATION ENGINEERING TECHNOLOGY'
-        ],
-        'College of Nursing': [
-            'BACHELOR OF SCIENCE IN NURSING'
-        ],
-        'School of Graduate Studies': [
-            'MASTER OF SCIENCE IN ELECTRICAL ENGINEERING',
-            'DOCTOR IN SUSTAINABLE DEVELOPMENT STUDIES',
-            'MASTER OF SCIENCE IN INFORMATION TECHNOLOGY',
-            'MASTER OF SCIENCE IN MECHANICAL ENGINEERING',
-            'MASTER OF SCIENCE IN MATERIALS SCIENCE AND ENGINEERING',
-            'MASTER OF SCIENCE IN PHYSICAL EDUCATION',
-            'DOCTOR OF PHILOSOPHY IN SCIENCE EDUCATION',
-            'DOCTOR OF PHILOSOPHY IN FILIPINO',
-            'DOCTOR OF PHILOSOPHY IN LANGUAGE STUDIES',
-            'MASTER OF ARTS IN ENGLISH LANGUAGE STUDIES',
-            'MASTER OF ARTS IN EDUCATION (GUIDANCE AND COUNSELING)',
-            'MASTER OF ARTS IN FILIPINO',
-            'MASTER OF ARTS IN SOCIOLOGY',
-            'MASTER IN BUSINESS MANAGEMENT',
-            'MASTER IN HISTORY',
-            'MASTER IN SUSTAINABLE DEVELOPMENT STUDIES',
-            'MASTER IN INFORMATION TECHNOLOGY',
-            'MASTER OF ENGINEERING',
-            'MASTER OF PUBLIC ADMINISTRATION',
-            'MASTER OF SCIENCE IN COMPUTER APPLICATIONS',
-            'MASTER OF SCIENCE IN CIVIL ENGINEERING',
-            'DOCTOR OF ENGINEERING',
-            'MASTER OF SCIENCE EDUCATION',
-            'MASTER OF SCIENCE IN COMPUTER SCIENCE'
-        ]
-    };
+    // Input event listeners to enforce format
+    function setupInputField(field) {
+        field.addEventListener('input', function() {
+            const currentValue = this.value;
+            const formatted = formatPhoneNumber(currentValue);
+            this.value = formatted;
+
+            // Set the cursor position
+            const cursorPosition = calculateCursorPosition(currentValue, formatted);
+            this.setSelectionRange(cursorPosition, cursorPosition);
+        });
+    }
+
+    // Calculate new cursor position based on input
+    function calculateCursorPosition(currentValue, formattedValue) {
+        const currentLength = currentValue.replace(/\D/g, '').length;
+        const formattedLength = formattedValue.replace(/\D/g, '').length;
+
+        if (currentLength > formattedLength) {
+            return formattedValue.length; // Move to the end if deleting digits
+        }
+
+        // If typing, adjust cursor position based on formatting
+        if (currentLength <= 1) return 4; // After "+63 "
+        if (currentLength <= 4) return 8; // After "+63 9## "
+        if (currentLength <= 7) return 12; // After "+63 9### "
+        return formattedValue.length; // Default to end
+    }
+
+    // Setup all phone input fields
+    setupInputField(mobileNumberField);
+    setupInputField(whatsappNumberField);
+    setupInputField(telegramNumberField);
+    
+     // Live validation for mobile number
+     mobileNumberField.addEventListener('input', function () {
+        const value = this.value.trim();
+        if (value === '') {
+            mobileError.textContent = 'Mobile Number is required*';
+            mobileError.style.display = 'inline-block';
+            this.classList.add('error-border');
+        } else if (!phonePattern.test(value)) {
+            mobileError.textContent = 'Mobile Number must be in the format +63 9## ### ####*';
+            mobileError.style.display = 'inline-block';
+            this.classList.add('error-border');
+        } else {
+            mobileError.textContent = '';
+            mobileError.style.display = 'none';
+            this.classList.remove('error-border');
+        }
+    });
+
+    // Live validation for WhatsApp number
+    whatsappNumberField.addEventListener('input', function () {
+        const value = this.value.trim();
+        if (!phonePattern.test(value)) {
+            whatsappError.textContent = 'Valid whatsapp number is required*';
+            whatsappError.style.display = 'inline-block';
+            this.classList.add('error-border');
+        }
+    });
+
+    // Live validation for Telegram number
+    telegramNumberField.addEventListener('input', function () {
+        const value = this.value.trim();
+        if (!phonePattern.test(value)) {
+            telegramError.textContent = 'Valid telegram number is required*';
+            telegramError.style.display = 'inline-block';
+            this.classList.add('error-border');
+        }
+    });
+
+    addCapitalizationListener(houseStreetField);
+    addCapitalizationListener(barangayField);
+    addCapitalizationListener(municipalityCityField);
+    addCapitalizationListener(provinceField);
 
     nextButton.addEventListener('click', async function(event) {
         event.preventDefault(); // Prevent default form submission
@@ -213,97 +226,118 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.error-border').forEach(elem => elem.classList.remove('error-border'));
 
         // Get form values
-        const studentId = document.getElementById('student-id').value.trim();
-        const firstNameValue = firstName.value.trim();
-        const middleNameValue = middleName.value.trim();
-        const lastNameValue = lastName.value.trim();
+        const firstNameValue = firstNameField.value.trim();
+        const middleNameValue = middleNameField.value.trim();
+        const lastNameValue = lastNameField.value.trim();
+        const genderValue = genderSelect.value.trim();
+
         const dobValue = dobField.value.trim();
         const ageValue = ageField.value.trim();
-        const genderValue = document.getElementById('gender').value.trim();
-        const departmentValue = departmentSelect.value.trim();
-        const courseValue = courseSelect.value.trim();
+        const placeOfBirthValue = placeOfBirthField.value.trim();
+        const citizenshipValue = citizenshipField.value.trim();
+
         const emailValue = emailField.value.trim();
-        const mobileNumber = document.getElementById('mobile-number').value.trim();
-        const houseStreet = document.getElementById('house-street').value.trim();
-        const barangay = document.getElementById('barangay').value.trim();
-        const city = document.getElementById('city').value.trim();
-        const province = document.getElementById('province').value.trim();
+        const mobileNumberValue = mobileNumberField.value.trim();
+        const whatsAppNumberValue = whatsappNumberField.value.trim();
+        const telegramNumberValue = telegramNumberField.value.trim();
+
+        const houseStreetValue = houseStreetField.value.trim();
+        const barangayValue = barangayField.value.trim();
+        const municipalityCityValue = municipalityCityField.value.trim();
+        const provinceValue = provinceField.value.trim();
 
         // Form validation
         let isValid = true;
 
         // Validate fields
-        if (studentId === '') {
-            document.getElementById('error-id-number').textContent = 'Student ID is required*';
-            document.getElementById('error-id-number').style.display = 'inline-block';
-            isValid = false;
-        }
         if (firstNameValue === '') {
             document.getElementById('error-first-name').textContent = 'First Name is required*';
             document.getElementById('error-first-name').style.display = 'inline-block';
             isValid = false;
         }
-        if (middleNameValue === '') {
-            document.getElementById('error-middle-name').textContent = 'Middle Name is required*';
-            document.getElementById('error-middle-name').style.display = 'inline-block';
-            isValid = false;
-        }
+        
         if (lastNameValue === '') {
             document.getElementById('error-last-name').textContent = 'Last Name is required*';
             document.getElementById('error-last-name').style.display = 'inline-block';
             isValid = false;
         }
-        if (dobValue === '') {
-            document.getElementById('error-dob').textContent = 'Date of Birth is required*';
-            document.getElementById('error-dob').style.display = 'inline-block';
+
+        if (middleNameValue === '') {
+            document.getElementById('error-middle-name').textContent = 'Middle Name is required*';
+            document.getElementById('error-middle-name').style.display = 'inline-block';
             isValid = false;
         }
-        if (ageValue === '' || isNaN(ageValue)) {
-            document.getElementById('error-age').textContent = 'Age is required and must be a number*';
-            document.getElementById('error-age').style.display = 'inline-block';
-            isValid = false;
-        }
+
         if (genderValue === 'default') {
             document.getElementById('error-gender').textContent = 'Gender is required*';
             document.getElementById('error-gender').style.display = 'inline-block';
             isValid = false;
         }
+
+
+        
+        if (dobValue === '') {
+            document.getElementById('error-dob').textContent = 'Date of Birth is required*';
+            document.getElementById('error-dob').style.display = 'inline-block';
+            isValid = false;
+        }
+
+        if (ageValue === '' || isNaN(ageValue)) {
+            document.getElementById('error-age').textContent = 'Age is required and must be a number*';
+            document.getElementById('error-age').style.display = 'inline-block';
+            isValid = false;
+        }
+
+        if (placeOfBirthValue === '' || !pattern.test(placeOfBirthValue)) {
+            document.getElementById('error-place-of-birth').textContent = 'Valid place of birth is required*';
+            document.getElementById('error-place-of-birth').style.display = 'inline-block';
+            isValid = false;
+        }
+
+        if (citizenshipValue === '') {
+            document.getElementById('error-citizenship').textContent = 'Citizenship is required*';
+            document.getElementById('error-citizenship').style.display = 'inline-block';
+            isValid = false;
+        }
+
+
+        
         if (emailValue === '' || !isValidEmail(emailValue)) {
             document.getElementById('error-email').textContent = 'Valid email is required*';
             document.getElementById('error-email').style.display = 'inline-block';
             isValid = false;
         }
-        if (departmentValue === 'default') {
-            document.getElementById('error-department').textContent = 'Department is required*';
-            document.getElementById('error-department').style.display = 'inline-block';
-            isValid = false;
-        }
-        if (courseValue === 'default') {
-            document.getElementById('error-course').textContent = 'Course is required*';
-            document.getElementById('error-course').style.display = 'inline-block';
-            isValid = false;
-        }
-        if (mobileNumber === '') {
+
+        if (mobileNumberValue === '') {
             document.getElementById('error-mobile-number').textContent = 'Mobile Number is required*';
             document.getElementById('error-mobile-number').style.display = 'inline-block';
             isValid = false;
         }
-        if (houseStreet === '') {
+
+        // Validate mobile number format
+        if (!phonePattern.test(mobileNumberField.value.trim())) {
+            mobileError.textContent = 'Valid mobile number is required*';
+            mobileError.style.display = 'inline-block';
+            mobileNumberField.classList.add('error-border');
+            isValid = false;
+        }
+
+        if (houseStreetValue === '') {
             document.getElementById('error-house-street').textContent = 'House/Street is required*';
             document.getElementById('error-house-street').style.display = 'inline-block';
             isValid = false;
         }
-        if (barangay === '') {
+        if (barangayValue === '') {
             document.getElementById('error-barangay').textContent = 'Barangay is required*';
             document.getElementById('error-barangay').style.display = 'inline-block';
             isValid = false;
         }
-        if (city === '') {
-            document.getElementById('error-city').textContent = 'City is required*';
+        if (municipalityCityValue === '') {
+            document.getElementById('error-city').textContent = 'Municipality/City is required*';
             document.getElementById('error-city').style.display = 'inline-block';
             isValid = false;
         }
-        if (province === '') {
+        if (provinceValue === '') {
             document.getElementById('error-province').textContent = 'Province is required*';
             document.getElementById('error-province').style.display = 'inline-block';
             isValid = false;
@@ -311,24 +345,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (isValid) {
             // Store values in session storage
-            sessionStorage.setItem('studentId', studentId);
             sessionStorage.setItem('firstName', firstNameValue);
             sessionStorage.setItem('middleName', middleNameValue);
             sessionStorage.setItem('lastName', lastNameValue);
-            sessionStorage.setItem('dob', dobValue);
             sessionStorage.setItem('gender', genderValue);
+
+            sessionStorage.setItem('dob', dobValue);
             sessionStorage.setItem('age', ageValue);
-            sessionStorage.setItem('department', departmentValue);
-            sessionStorage.setItem('course', courseValue);
+            sessionStorage.setItem('placeOfBirth', placeOfBirthValue);
+            sessionStorage.setItem('citizenship', citizenshipValue);
+            
             sessionStorage.setItem('email', emailValue);
-            sessionStorage.setItem('mobileNumber', mobileNumber);
-            sessionStorage.setItem('houseStreet', houseStreet);
-            sessionStorage.setItem('barangay', barangay);
-            sessionStorage.setItem('city', city);
-            sessionStorage.setItem('province', province);
+            sessionStorage.setItem('mobileNumber', mobileNumberValue);
+            sessionStorage.setItem('whatsAppNumber', whatsAppNumberValue);
+            sessionStorage.setItem('telegramNumber', telegramNumberValue);
+
+            sessionStorage.setItem('houseStreet', houseStreetValue);
+            sessionStorage.setItem('barangay', barangayValue);
+            sessionStorage.setItem('municipalityCity', municipalityCityValue);
+            sessionStorage.setItem('province', provinceValue);
 
             // Redirect to Required Document Page
-            window.location.href = '../Required Documents Page/RequiredDocumentsPage.html';
+            window.location.href = '../Summary Page/SummaryPage.html';
         }
     });
 });
+
