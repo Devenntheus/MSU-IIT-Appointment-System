@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Request & Authentication Page</title>
+    <link rel="stylesheet" href="DocumentRequestAuthenticationPage.css">
+</head>
+<body>
+    <header>
+        <img src="../Images/msuiit-logo.png" alt="University Logo" class="logo">
+        <div class="header-text">
+            <p class="title">M&nbsp;I&nbsp;N&nbsp;D&nbsp;A&nbsp;N&nbsp;A&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;T&nbsp;A&nbsp;T&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;N&nbsp;I&nbsp;V&nbsp;E&nbsp;R&nbsp;S&nbsp;I&nbsp;T&nbsp;Y</p>
+            <p class="subtitle">I&nbsp;L&nbsp;I&nbsp;G&nbsp;A&nbsp;N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;N&nbsp;S&nbsp;T&nbsp;I&nbsp;T&nbsp;U&nbsp;T&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;F&nbsp;&nbsp;&nbsp;T&nbsp;E&nbsp;C&nbsp;H&nbsp;N&nbsp;O&nbsp;L&nbsp;O&nbsp;G&nbsp;Y</p>
+        </div>
+    </header>
+    <main>
+        <div class="main-container">
+            <form>
+                <div class="left-column">
+                    <div class="section">
+                        <label class="section-title" for="purpose">Purpose of Request (Please indicate purpose as this will be indicated in your requested document; for instance: For employment; For evaluation; For licensure examination) </label>
+                        <input type="text" id="purpose" placeholder="Your Answer"></input>
+                    </div>
+
+                    <div class="section">
+                        <label class="section-title">Authentication of Document (Please upload file to be authenticated)*</label>
+                        <label><input type="checkbox" value="Authentication of Certificate">Authentication of Certificate</label>
+                        <label><input type="checkbox" value="Authentication of Transcript of Records">Authentication of Transcript of Records</label>
+                        <label><input type="checkbox" value="Authentication of Diploma">Authentication of Diploma</label>
+                        <label><input type="checkbox" value="Not Applicable">Not Applicable</label>
+                        <label class="section-title" for="upload">Upload file to be authenticated.</label>
+                        <input type="file" id="upload">
+                    </div>
+
+                    <div class="section">
+                        <label class="section-title" for="grades">If you are a current student and requesting for Report of Grades, please indicate for which semester and academic year you are requesting.</label>
+                        <input type="text" id="grades" placeholder="Your Answer">
+                    </div>
+
+                    <div class="section">
+                        <label class="section-title" for="certificate">If you are a current student and requesting for  printing of a Certificate of Registration, please indicate for which semester and academic year you are requesting.</label>
+                        <input type="text" id="certificate" placeholder="Your Answer">
+                    </div>
+                </div>
+
+                <div class="right-column">
+                    <div class="section">
+                        <label class="section-title">Request for Document (Indicate in the special requests if requesting for more than one copy; Transfer Credential and 2nd School Request is only one copy)</label>
+                        <label><input type="checkbox" value="Evaluation">Evaluation</label>
+                        <label><input type="checkbox" value="Diploma">Diploma</label>
+                        <label><input type="checkbox" value="Reprinting of Misspelled / Damaged Diploma">Reprinting of Misspelled / Damaged Diploma</label>
+                        <label><input type="checkbox" value="Transfer Credential">Transfer Credential</label>
+                        <label><input type="checkbox" value="Transcript of Records">Transcript of Records</label>
+                        <label><input type="checkbox" value="2nd School Request">2nd School Request</label>
+                        <label><input type="checkbox" value="Cert CAV for local employment">Cert CAV for local employment</label>
+                        <label><input type="checkbox" value="Certification, Authentication, and Verification (CAV) for foreign employment">Certification, Authentication, and Verification (CAV) for foreign employment</label>
+                        <label><input type="checkbox" value="Not Applicable">Not Applicable</label>
+                    </div>
+
+                    <div class="section">
+                        <label class="section-title" for="special-requests">Special requests; please indicate number of copies requested if requesting more than one copy (example: 2 authenticated copies; 2 original copies; indicate also if additional copies will be for other purposes)</label>
+                        <input type="text" id="special-requests" placeholder="Your Answer">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    <div class="actions">
+        <button type="button" id="next-btn">Next</button>
+        <button type="button" id="cancel-btn">Cancel</button>
+    </div>
+</body>
+</html>
