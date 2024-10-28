@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Info</title>
+    <link rel="stylesheet" href="AcademicInfoPage.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tai+Tham&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="AcademicInfoPage.js" defer></script>
+</head>
+<body>
+    <header>
+        <img src="../Images/msuiit-logo.png" alt="University Logo" class="logo">
+        <div class="header-text">
+            <p class="title">M&nbsp;I&nbsp;N&nbsp;D&nbsp;A&nbsp;N&nbsp;A&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;T&nbsp;A&nbsp;T&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;N&nbsp;I&nbsp;V&nbsp;E&nbsp;R&nbsp;S&nbsp;I&nbsp;T&nbsp;Y</p>
+            <p class="subtitle">I&nbsp;L&nbsp;I&nbsp;G&nbsp;A&nbsp;N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;N&nbsp;S&nbsp;T&nbsp;I&nbsp;T&nbsp;U&nbsp;T&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;F&nbsp;&nbsp;&nbsp;T&nbsp;E&nbsp;C&nbsp;H&nbsp;N&nbsp;O&nbsp;L&nbsp;O&nbsp;G&nbsp;Y</p>
+        </div>
+    </header>
+    <main>
+        <form>
+            <h2>Academic Information</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="student-number">Student No. <span style="color: red;">*</span> </label> 
+                    <input type="text" id="student-number">
+                    <span class="error-message" id="error-student-number"></span>
+                </div>
+
+                <div class="form-group">
+                    <!-- Filter for College/Department -->
+                    <label for="filter-college-department">Department:</label>
+                    <select id="filter-college-department">
+                        <option value="default">- - - Select College/Department - - -</option>
+                        <option value="College of Arts & Social Sciences">College of Arts & Social Sciences</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="College of Science & Mathematics">College of Science & Mathematics</option>
+                        <option value="College of Science & Mathematics Graduate Programs">College of Science & Mathematics Graduate Programs</option>
+                        <option value="College of Education">College of Education</option>
+                        <option value="College of Business Administration & Accountancy">College of Business Administration & Accountancy</option>
+                        <option value="School of Computer Studies">School of Computer Studies</option>
+                        <option value="School of Engineering Technology">School of Engineering Technology</option>
+                        <option value="College of Nursing">College of Nursing</option>
+                        <option value="School of Graduate Studies">School of Graduate Studies</option>
+                    </select>   
+                    <span class="error-message" id="error-department"></span> 
+                </div>
+
+                <div class="form-group">
+                    <label for="course">Course</label>
+                    <select id="course">
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Civil Engineering">Civil Engineering</option>
+                        <option value="Electrical Engineering">Electrical Engineering</option>
+                    <label for="filter-course">Course:</label>
+                    <select id="filter-course">
+                        <option value="default">- - - Select Course - - -</option>
+                    </select>
+                    <span class="error-message" id="error-course"></span> 
+                </div>
+
+                <div class="form-group">
+                    <label for="student-alumni">Are you a student or an alumnus? <span style="color: red;">*</span></label>
+                    <select id="student-alumni">
+                        <option value="default">Please Select Classification</option>
+                        <option value="Student">Student</option>
+                        <option value="Alumni">Alumni</option>
+                    </select>
+                    <span class="error-message" id="error-student-alumni"></span>
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="date-graduation">Date of Graduation <span style="color: red;">*</span></label>
+                    <input type="date" id="date-graduation">
+                    <span class="error-message" id="error-date-graduation"></span>
+                </div>
+                <div class="form-group">
+                    <label for="honor-academic-distinction">Honor / Academic Distinction <span style="color: red;">*</span></label>
+                    <input type="text" id="honor-academic-distinction">
+                    <span class="error-message" id="error-honor-academic-distinction"></span>
+                </div>
+                <div class="form-group">
+                    <label for="school">High School / Senior High School Graduated <span style="color: red;">*</span></label>
+                    <input type="text" id="school">
+                    <span class="error-message" id="error-school"></span>
+                </div>
+
+                <div class="form-group">
+                    
+                </div>
+
+
+                
+
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="transferee-school">If transferee, last school / university attended </label>
+                    <input type="text" id="transferee-school">
+                    <span class="error-message" id="error-transferee-school"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="last-semester-attended">Last Semester and Academic Year of Attendance in MSU-IIT (If currently enrolled, please indicate current semester; please answer in this format: 1st Sem, AY 2023-2024) </label>
+                    <input type="text" id="last-semester-attended">
+                    <span class="error-message" id="error-last-semester-attended"></span>
+                </div>
+            </div>
+
+        </br>
+    </br>
+</br></br>
+</br>
+            <div class="form-buttons">
+                <button type="submit" id="next" class="next-button">Next</button>
+                <button type="button" id="cancel" class="cancel-button">Cancel</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

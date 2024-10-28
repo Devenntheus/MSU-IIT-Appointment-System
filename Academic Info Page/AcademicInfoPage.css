@@ -1,0 +1,148 @@
+body {
+    font-family: 'Noto Sans Tai Tham', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+    color: #FFFFFF;
+}
+
+header {
+    height: 120px;
+    background-color: #830006;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #FFFFFF;
+    position: relative;
+}
+
+.logo {
+    height: 100px;
+    position: absolute;
+    left: 20px;
+    margin-left: 10px;
+}
+
+.header-text {
+    text-align: center;
+    color: #ffffff;
+}
+
+header .title {
+    font-size: 35px;
+    margin: 0;
+    color: #F7D953;
+}
+
+header .subtitle {
+    font-size: 16px;
+    margin: 5px 0 0;
+}
+
+main {
+    padding: 40px;
+    margin-top: -60px;
+    display: flex;
+    background: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+form {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding: 30px;
+}
+
+h2 {
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.form-group {
+    flex: 1;
+    color: #000;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.form-group label {
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="date"],
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    background-color: #dddddd;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    display: none;
+}
+
+.error-border {
+    border: 2px solid red;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.next-button,
+.cancel-button {
+    font-family: 'Poppins', sans-serif;
+    margin-top: 40px;
+    height: 55.56px;
+    width: 235.2px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.next-button {
+    background-color: #F7D953;
+    color: #676767;
+}
+
+.cancel-button {
+    background-color: #830006;
+    color: #FFF;
+}
