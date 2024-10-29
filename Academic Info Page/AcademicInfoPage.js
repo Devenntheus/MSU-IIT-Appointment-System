@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sessionStorage.setItem('lastSemAttended', lastSemAttended);
 
             // Redirect to SummaryPage.html
-            window.location.href = '../Summary Page/SummaryPage.html';
+            window.location.href = '../Document Request & Authenticator Page/DocumentRequestAuthenticationPage.html';
         } else {
             console.log("Form validation failed");
         }

@@ -32,6 +32,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const city = sessionStorage.getItem('municipalityCity') || 'N/A';
     const province = sessionStorage.getItem('province') || 'N/A';
 
+    // Retrieve session values from Academic Info Page
+    const studentID = sessionStorage.getItem('studentId') || 'N/A';
+    const department = sessionStorage.getItem('department') || 'N/A';
+    const course = sessionStorage.getItem('course') || 'N/A';
+    const studentAlumni = sessionStorage.getItem('studentAlumni') || 'N/A';
+    const dateGraduation = sessionStorage.getItem('dateGraduation') || 'N/A';
+    const Honor = sessionStorage.getItem('honor') || 'N/A';
+    const School = sessionStorage.getItem('school') || 'N/A';
+    const transfereeSchool = sessionStorage.getItem('transfereeSchool') || 'N/A';
+    const lastSemAttended = sessionStorage.getItem('lastSemAttended') || 'N/A';
+
     // Retrieve session values from Document Request Page
     const purpose = sessionStorage.getItem('purpose') || 'N/A';
     const grades = sessionStorage.getItem('grades') || 'N/A';
@@ -70,6 +81,17 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('barangay').textContent = barangay;
     document.getElementById('city').textContent = city;
     document.getElementById('province').textContent = province;
+
+    // Display retrieved Academic Info
+    document.getElementById('id-number').textContent = studentID;
+    document.getElementById('department').textContent = department;
+    document.getElementById('course').textContent = course;
+    document.getElementById('classification').textContent = studentAlumni;
+    document.getElementById('date-graduation').textContent = dateGraduation;
+    document.getElementById('honor').textContent = Honor;
+    document.getElementById('school').textContent = School;
+    document.getElementById('transferee-school').textContent = transfereeSchool;
+    document.getElementById('last-sem-attended').textContent = lastSemAttended;
 
     // Display retrieved Document Request
     document.getElementById('purpose').textContent = purpose;
