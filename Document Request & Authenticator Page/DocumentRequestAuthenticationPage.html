@@ -16,7 +16,7 @@
     </header>
     <main>
         <div class="main-container">
-            <form>
+            <div class="form">
                 <div class="left-column">
                     <div class="section">
                         <label class="section-title" for="purpose">Purpose of Request (Please indicate purpose as this will be indicated in your requested document; for instance: For employment; For evaluation; For licensure examination) </label>
@@ -25,10 +25,13 @@
 
                     <div class="section">
                         <label class="section-title">Authentication of Document (Please upload file to be authenticated)*</label>
-                        <label><input type="checkbox" value="Authentication of Certificate">Authentication of Certificate</label>
-                        <label><input type="checkbox" value="Authentication of Transcript of Records">Authentication of Transcript of Records</label>
-                        <label><input type="checkbox" value="Authentication of Diploma">Authentication of Diploma</label>
-                        <label><input type="checkbox" value="Not Applicable">Not Applicable</label>
+                        <label><input type="checkbox" class="auth-checkbox" value="Authentication of Certificate">Authentication of Certificate</label>
+                        <label><input type="checkbox" class="auth-checkbox" value="Authentication of Transcript of Records">Authentication of Transcript of Records</label>
+                        <label><input type="checkbox" class="auth-checkbox" value="Authentication of Diploma">Authentication of Diploma</label>
+                        <label><input type="checkbox" class="auth-checkbox" value="Not Applicable">Not Applicable</label>         
+                    </div>
+
+                    <div class="section">
                         <label class="section-title" for="upload">Upload file to be authenticated.</label>
                         <input type="file" id="upload">
                     </div>
@@ -46,16 +49,16 @@
 
                 <div class="right-column">
                     <div class="section">
-                        <label class="section-title">Request for Document (Indicate in the special requests if requesting for more than one copy; Transfer Credential and 2nd School Request is only one copy)</label>
-                        <label><input type="checkbox" value="Evaluation">Evaluation</label>
-                        <label><input type="checkbox" value="Diploma">Diploma</label>
-                        <label><input type="checkbox" value="Reprinting of Misspelled / Damaged Diploma">Reprinting of Misspelled / Damaged Diploma</label>
-                        <label><input type="checkbox" value="Transfer Credential">Transfer Credential</label>
-                        <label><input type="checkbox" value="Transcript of Records">Transcript of Records</label>
-                        <label><input type="checkbox" value="2nd School Request">2nd School Request</label>
-                        <label><input type="checkbox" value="Cert CAV for local employment">Cert CAV for local employment</label>
-                        <label><input type="checkbox" value="Certification, Authentication, and Verification (CAV) for foreign employment">Certification, Authentication, and Verification (CAV) for foreign employment</label>
-                        <label><input type="checkbox" value="Not Applicable">Not Applicable</label>
+                        <label class="section-title">Request for Document...</label>
+                        <label><input type="checkbox" class="request-checkbox" value="Evaluation">Evaluation</label>
+                        <label><input type="checkbox" class="request-checkbox" value="Diploma">Diploma</label>
+                        <label><input type="checkbox" class="request-checkbox" value="Reprinting of Misspelled / Damaged Diploma">Reprinting of Misspelled / Damaged Diploma</label>
+                        <label><input type="checkbox" class="request-checkbox" value="Transfer Credential">Transfer Credential</label>
+                        <label><input type="checkbox" class="request-checkbox" value="Transcript of Records">Transcript of Records</label>
+                        <label><input type="checkbox" class="request-checkbox" value="2nd School Request">2nd School Request</label>
+                        <label><input type="checkbox" class="request-checkbox" value="Cert CAV for local employment">Cert CAV for local employment</label>
+                        <label><input type="checkbox" class="request-checkbox" value="Certification, Authentication, and Verification (CAV) for foreign employment">Certification, Authentication, and Verification (CAV) for foreign employment</label>
+                        <label><input type="checkbox" class="request-checkbox" value="Not Applicable">Not Applicable</label>
                     </div>
 
                     <div class="section">
@@ -70,5 +73,6 @@
         <button type="button" id="next-btn">Next</button>
         <button type="button" id="cancel-btn">Cancel</button>
     </div>
+    <script src="DocumentRequestAuthenticationPage.js"></script>
 </body>
 </html>

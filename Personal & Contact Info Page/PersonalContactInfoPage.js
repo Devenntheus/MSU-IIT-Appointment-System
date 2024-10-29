@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sessionStorage.setItem('province', provinceValue);
 
             // Redirect to Required Document Page
-            window.location.href = '../Summary Page/SummaryPage.html';
+            window.location.href = '../Document Request & Authenticator Page/DocumentRequestAuthenticationPage.html';
         }
     });
 });

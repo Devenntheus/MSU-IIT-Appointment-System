@@ -20,17 +20,24 @@
     </header>
     <main>
         <h1>SUMMARY</h1>
-        <section class="transaction-details">
-            <h2>Transaction Details</h2>
-            <p><strong>Type of Transaction:</strong> <span id="transaction-type"></span></p>
-        </section>
-        <section class="appointment-payment">
+        <section class="transaction-appointment-details">
+            <div class="transaction-details">
+                <h2>Transaction Details</h2>
+                <p><strong>Type of Transaction:</strong> <span id="transaction-type"></span></p>
+                <p><strong>Document Type:</strong> <span id="document-type"></span></p>
+                <p><strong>Document:</strong> <span id="document-file"></span></p>
+            </div>
+            <div class="white-space">
+                <h2>blank</h2>
+            </div>
             <div class="appointment-schedule">
                 <h2>Appointment Schedule</h2>
                 <p><strong>Date:</strong> <span id="appointment-date"></span></p>
                 <p><strong>Time:</strong> <span id="appointment-time"></span></p>
             </div>
-            <div class="payment">
+        </section>        
+        <section class="appointment-payment">
+            <!-- <div class="payment">
                 <h2>Payment</h2>
                 <p><strong>Payment Option:</strong> <span id="payment-option"></span></p>
                 <p><strong>Total Amount:</strong> <span id="total-amount"></span></p>
@@ -39,23 +46,25 @@
                 <p><strong>Payment Status:</strong> <span id="payment-status"></span></p>
             </div>
             <div class="white-space">
-                <h2> szdszd</h2>
-            </div>
+                <h2>blank</h2>
+            </div> -->
         </section>
         <section class="personal-contact-address">
             <div class="personal-information">
                 <h2>Personal Information</h2>
-                <p><strong>Student ID No.:</strong> <span id="student-id"></span></p>
                 <p><strong>Full Name:</strong> <span id="full-name"></span></p>
-                <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
                 <p><strong>Gender:</strong> <span id="gender"></span></p>
+                <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
                 <p><strong>Age:</strong> <span id="age"></span></p>
-                <p><strong>Course:</strong> <span id="course"></span></p>
+                <p><strong>Place of Birth:</strong> <span id="pob"></span></p>
+                <p><strong>Citizenship:</strong> <span id="citizenship"></span></p>
             </div>
             <div class="contact-information">
                 <h2>Contact Information</h2>
                 <p><strong>Email:</strong> <span id="email"></span></p>
                 <p><strong>Mobile Number:</strong> <span id="mobile-number"></span></p>
+                <p><strong>WhatsApp Number:</strong> <span id="whatsapp-number"></span></p>
+                <p><strong>Telegram Number:</strong> <span id="telegram-number"></span></p>
             </div>
             <div class="address-information">
                 <h2>Address Information</h2>
@@ -65,6 +74,33 @@
                 <p><strong>Province:</strong> <span id="province"></span></p>
             </div>
         </section>
+        <section class="academic-request-specification">
+            <div class="academic-information">
+                <h2>Academic Information</h2>
+                <p><strong>Student ID Number:</strong> <span id="id-number"></span></p>
+                <p><strong>Department:</strong> <span id="department"></span></p>
+                <p><strong>Course:</strong> <span id="course"></span></p>
+                <p><strong>Classification:</strong> <span id="classification"></span></p>
+                <p><strong>Date of Graduation:</strong> <span id="date-graduation"></span></p>
+                <p><strong>Honor / Academic Distinction:</strong> <span id="academic-distinction"></span></p>
+                <p><strong>Highschool / Senior Highschool Graduated:</strong> <span id="school-graduated"></span></p>
+                <p><strong>If transferee, last school / University attended:</strong> <span id="transferee"></span></p>
+                <p><strong>Last semester academic year of attendance in MSU-IIT:</strong> <span id="attendance"></span></p>
+            </div>
+            <div class="white-space">
+                <h2>blank</h2>
+            </div>
+            <div class="request-specification">
+                <h2>Request Specification</h2>
+                <p><strong>Purpose of the request:</strong> <span id="purpose"></span></p>
+                <p><strong>Authentication of document:</strong> <span id="auth-doc-type"></span></p>
+                <p><strong>Document:</strong> <span id="auth-doc-file"></span></p>
+                <p><strong>Certificate of registration semester and academic year:</strong> <span id="certificate-registration"></span></p>
+                <p><strong>Report and grades semester and academic year:</strong> <span id="report-grade"></span></p>
+                <p><strong>Special request document type:</strong> <span id="special-req-doc-type"></span></p>
+                <p><strong>Special request number of copies:</strong> <span id="special-req-doc-copies"></span></p>
+            </div>
+        </section>        
         <div class="confirmation">
             <label>
                 <input type="checkbox" required>

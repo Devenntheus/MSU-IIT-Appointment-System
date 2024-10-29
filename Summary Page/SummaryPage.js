@@ -1,43 +1,84 @@
 document.addEventListener('DOMContentLoaded', function () {
+    
     // Retrieve all session values
-    const transactionType = sessionStorage.getItem('transactionType');
-    const appointmentDate = sessionStorage.getItem('appointmentDate');
-    const timeFrom = sessionStorage.getItem('timeFrom');
-    const timeTo = sessionStorage.getItem('timeTo');
-    const studentId = sessionStorage.getItem('studentId');
-    const firstName = sessionStorage.getItem('firstName');
-    const middleName = sessionStorage.getItem('middleName');
-    const lastName = sessionStorage.getItem('lastName');
-    const dob = sessionStorage.getItem('dob');
-    const gender = sessionStorage.getItem('gender');
-    const age = sessionStorage.getItem('age');
-    const department = sessionStorage.getItem('department');
-    const course = sessionStorage.getItem('course');
-    const email = sessionStorage.getItem('email');
-    const mobileNumber = sessionStorage.getItem('mobileNumber');
-    const houseStreet = sessionStorage.getItem('houseStreet');
-    const barangay = sessionStorage.getItem('barangay');
-    const city = sessionStorage.getItem('city');
-    const province = sessionStorage.getItem('province');
-    const docFileName = sessionStorage.getItem('docFileName');
-    const documentContents = sessionStorage.getItem('document');
+    const transactionType = sessionStorage.getItem('transactionType') || 'N/A';
+    const documentType = sessionStorage.getItem('documentType') || 'N/A';
+    const cert12_16Value = sessionStorage.getItem('Cert1216') || 'N/A';
 
-    // Display retrieved data
+    // Retrieve session values from Scheduling Page
+    const appointmentDate = sessionStorage.getItem('appointmentDate') || 'N/A';
+    const timeFrom = sessionStorage.getItem('timeFrom') || 'N/A';
+    const timeTo = sessionStorage.getItem('timeTo') || 'N/A';
+
+    // Retrieve session values from Required Documents Page
+    const docFileName = sessionStorage.getItem('docFileName') || 'N/A';
+    const documentContents = sessionStorage.getItem('document') || 'N/A';
+
+    // Retrieve session values from Personal Info Page
+    const firstName = sessionStorage.getItem('firstName') || 'N/A';
+    const middleName = sessionStorage.getItem('middleName') || 'N/A';
+    const lastName = sessionStorage.getItem('lastName') || 'N/A';
+    const gender = sessionStorage.getItem('gender') || 'N/A';
+    const dob = sessionStorage.getItem('dob') || 'N/A';
+    const age = sessionStorage.getItem('age') || 'N/A';
+    const placeOfBirth = sessionStorage.getItem('placeOfBirth') || 'N/A';
+    const citizenship = sessionStorage.getItem('citizenship') || 'N/A';
+    const email = sessionStorage.getItem('email') || 'N/A';
+    const mobileNumber = sessionStorage.getItem('mobileNumber') || 'N/A';
+    const whatsAppNumber = sessionStorage.getItem('whatsAppNumber') || 'N/A';
+    const telegramNumber = sessionStorage.getItem('telegramNumber') || 'N/A';
+    const houseStreet = sessionStorage.getItem('houseStreet') || 'N/A';
+    const barangay = sessionStorage.getItem('barangay') || 'N/A';
+    const city = sessionStorage.getItem('municipalityCity') || 'N/A';
+    const province = sessionStorage.getItem('province') || 'N/A';
+
+    // Retrieve session values from Document Request Page
+    const purpose = sessionStorage.getItem('purpose') || 'N/A';
+    const grades = sessionStorage.getItem('grades') || 'N/A';
+    const certificate = sessionStorage.getItem('certificate') || 'N/A';
+    const specialRequests = sessionStorage.getItem('specialRequests') || 'N/A';
+    const authDocuments = sessionStorage.getItem('authDocuments') || 'N/A';
+    const requestDocuments = sessionStorage.getItem('requestDocuments') || 'N/A';
+    const uploadFileName = sessionStorage.getItem('uploadAuthFileName') || 'N/A';
+    const uploadFileContents = sessionStorage.getItem('uploadAuthFileContents') || 'N/A';
+
+    // Display retrieved Transaction/Document Type
     document.getElementById('transaction-type').textContent = transactionType;
+    document.getElementById('document-type').textContent = documentType;
+    document.getElementById('document-file').textContent = docFileName;
+
+    // Display retrieved Appointment Schedule
     document.getElementById('appointment-date').textContent = appointmentDate;
     document.getElementById('appointment-time').textContent = `${timeFrom} - ${timeTo}`;
-    document.getElementById('student-id').textContent = studentId;
+
+    // Display retrieved Personal Info
     document.getElementById('full-name').textContent = `${firstName} ${middleName ? middleName + ' ' : ''}${lastName}`;
-    document.getElementById('dob').textContent = dob;
     document.getElementById('gender').textContent = gender;
+    document.getElementById('dob').textContent = dob;
     document.getElementById('age').textContent = age;
-    document.getElementById('course').textContent = course;
+    document.getElementById('pob').textContent = placeOfBirth;
+    document.getElementById('citizenship').textContent = citizenship;
+
+    // Display retrieved Contact Info
     document.getElementById('email').textContent = email;
     document.getElementById('mobile-number').textContent = mobileNumber;
+    document.getElementById('whatsapp-number').textContent = whatsAppNumber;
+    document.getElementById('telegram-number').textContent = telegramNumber;
+
+    // Display retrieved Address Info
     document.getElementById('house-street').textContent = houseStreet;
     document.getElementById('barangay').textContent = barangay;
     document.getElementById('city').textContent = city;
     document.getElementById('province').textContent = province;
+
+    // Display retrieved Document Request
+    document.getElementById('purpose').textContent = purpose;
+    document.getElementById('auth-doc-type').textContent = requestDocuments;
+    document.getElementById('auth-doc-file').textContent = uploadFileName;
+    document.getElementById('certificate-registration').textContent = certificate;
+    document.getElementById('report-grade').textContent = grades;
+    document.getElementById('special-req-doc-type').textContent = authDocuments;
+    document.getElementById('special-req-doc-copies').textContent = specialRequests;
 
     // Generate appointment ID
     function generateAppointmentID(counter) {

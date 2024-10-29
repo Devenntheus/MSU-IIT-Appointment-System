@@ -58,23 +58,26 @@ section {
     margin-bottom: 40px;
 }
 
-.transaction-details, .appointment-schedule, .payment, .personal-information, .contact-information, .address-information, .white-space {
+.transaction-appointment-details, .personal-contact-address, .academic-request-specification {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.transaction-details, .appointment-schedule, .academic-information, .request-specification {
+    width: 50%;
+}
+
+.personal-contact-address > div {
+    width: 40%;
+}
+
+.transaction-details, .appointment-schedule, .payment, .personal-information, .contact-information, .address-information, .academic-information, .request-specification, .white-space {
     margin-bottom: 20px;
 }
 
 .white-space h2 {
     color: #FFFFFF; /* This makes the h2 text in the white-space class white */
-}
-
-
-.appointment-payment, .personal-contact-address {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-
-.appointment-payment > div, .personal-contact-address > div {
-    width: 48%;
 }
 
 h2 {

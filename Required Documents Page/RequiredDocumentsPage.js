@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (fileName && fileContent) {
             sessionStorage.setItem('docFileName', fileName);
             sessionStorage.setItem('document', fileContent);
-            window.location.href = '../Summary Page/SummaryPage.html';
+            window.location.href = '../Scheduling Page/SchedulingPage.html';
         } else {
             alert('Please upload a file first.');
         }

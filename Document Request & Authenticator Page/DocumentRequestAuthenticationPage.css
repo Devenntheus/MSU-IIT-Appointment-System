@@ -56,7 +56,7 @@ main {
     padding: 20px;
 }
 
-form {
+.form {
     display: flex;
     gap: 20px;
 }

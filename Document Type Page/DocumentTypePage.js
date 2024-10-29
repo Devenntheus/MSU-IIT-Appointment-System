@@ -41,6 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Cert. 12.16 Value:', cert12_16Value);
         
         // Redirect to the scheduling page
-        window.location.href = '../Scheduling Page/SchedulingPage.html';
+        window.location.href = '../Required Documents Page/RequiredDocumentsPage.html';
     });
 });

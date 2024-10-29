@@ -14,8 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Transaction Type:', transactionType);
             // Store the transaction type in sessionStorage
             sessionStorage.setItem('transactionType', transactionType);
-            // Redirect to the scheduling page
-            window.location.href = '../Scheduling Page/SchedulingPage.html';
+            // Check if the transaction type is "Document Request"
+            if (transactionType === "Document Request") {
+                // Redirect to the Document Type page
+                window.location.href = '../Document Type Page/DocumentTypePage.html';
+            } else {
+                // Redirect to the scheduling page
+                window.location.href = '../Scheduling Page/SchedulingPage.html';
+            }
         });
     });
 });
