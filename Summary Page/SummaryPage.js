@@ -102,6 +102,35 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('special-req-doc-type').textContent = authDocuments;
     document.getElementById('special-req-doc-copies').textContent = specialRequests;
 
+    // Blob URL for the document contents
+    function createBlobUrl(base64Content, mimeType) {
+        const byteCharacters = atob(base64Content.split(',')[1]);
+        const byteNumbers = new Array(byteCharacters.length).fill().map((_, i) => byteCharacters.charCodeAt(i));
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: mimeType });
+        return URL.createObjectURL(blob);
+    }
+
+    // Document download links
+    const documentFileElement = document.getElementById('document-file');
+    const authDocFileElement = document.getElementById('auth-doc-file');
+
+    if (documentContents !== 'N/A') {
+        documentFileElement.href = createBlobUrl(documentContents, 'application/pdf');
+        documentFileElement.textContent = docFileName;
+        documentFileElement.download = docFileName;
+    } else {
+        documentFileElement.textContent = 'N/A';
+    }
+
+    if (uploadFileContents !== 'N/A') {
+        authDocFileElement.href = createBlobUrl(uploadFileContents, 'application/pdf');
+        authDocFileElement.textContent = uploadFileName;
+        authDocFileElement.download = uploadFileName;
+    } else {
+        authDocFileElement.textContent = 'N/A';
+    }
+
     // Generate appointment ID
     function generateAppointmentID(counter) {
         const date = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: '2-digit' }).replace(/\//g, '');

@@ -97,8 +97,8 @@ app.post('/api/checkMonthAvailability', async (req, res) => {
             // Time slots are 08:00-09:00 to 16:00-17:00 (8 slots)
             const totalSlots = 8;
             const bookedCount = bookedSlots.length;
-            const isFullyBooked = bookedSlots.length === totalSlots;
-            const isPartiallyBooked = bookedCount >= 4 && bookedCount < 8;
+            const isFullyBooked = bookedCount === totalSlots;
+            const isPartiallyBooked = bookedCount >= 4 && bookedCount < totalSlots;
 
             monthAvailability[date] = { isFullyBooked, isPartiallyBooked };
         }
