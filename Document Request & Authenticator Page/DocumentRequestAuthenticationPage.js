@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Upload File Contents:', sessionStorage.getItem('uploadAuthFileContents')); // corrected key
 
         // Redirect to the next page
-        window.location.href = '../Summary Page/SummaryPage.html';
+        window.location.href = '../Payment Page/PaymentDisplayPage.html';
     }
 });
 
