@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Display</title>
+    <link rel="stylesheet" href="PaymentDisplayPage.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tai+Tham&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <img src="../Images/msuiit-logo.png" alt="University Logo" class="logo">
+        <div class="header-text">
+            <p class="title">M&nbsp;I&nbsp;N&nbsp;D&nbsp;A&nbsp;N&nbsp;A&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&nbsp;T&nbsp;A&nbsp;T&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;N&nbsp;I&nbsp;V&nbsp;E&nbsp;R&nbsp;S&nbsp;I&nbsp;T&nbsp;Y</p>
+            <p class="subtitle">I&nbsp;L&nbsp;I&nbsp;G&nbsp;A&nbsp;N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;N&nbsp;S&nbsp;T&nbsp;I&nbsp;T&nbsp;U&nbsp;T&nbsp;E&nbsp;&nbsp;&nbsp;O&nbsp;F&nbsp;&nbsp;&nbsp;T&nbsp;E&nbsp;C&nbsp;H&nbsp;N&nbsp;O&nbsp;L&nbsp;O&nbsp;G&nbsp;Y</p>
+        </div>
+    </header>
+
+    <div class="content-box">
+        <p class="instruction">Please settle payment of requested documents at the Cashiering Division prior to claiming of documents.</p>
+        <div class="price-list">
+            <p><strong>Request for Document</strong> (Indicate in the special requests if requesting for more than one copy; Transfer Credential and 2nd School Request is only one copy)</p>
+            <ul>
+                <li>• Certification <span>Php 50.00</span></li>
+                <li>• COR Reprinting <span>Php 20.00</span></li>
+                <li>• Report of Grades <span>Php 20.00</span></li>
+                <li>• Authentication <span>Php 10.00/page</span></li>
+                <li>• Evaluation <span>Php 50.00</span></li>
+                <li>• Reprinting of Misspelled / Damaged Diploma <span>Php 150.00</span></li>
+                <li>• Transcript of Records <span>Php 50.00/page</span></li>
+                <li>• Transfer Credential <span>Php 150.00</span></li>
+                <li>• Mailing and Handling (OIS01) <span>Php 250.00</span></li>
+                <li>• CAV (for foreign employment) <span>Php 350.00</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button id="nextButton" class="next-button">Next</button>
+        <button class="cancel-button">Cancel</button>
+    </div>
+
+    <script>
+        document.getElementById('nextButton').addEventListener('click', function() {
+            window.location.href = "../Summary Page/SummaryPage.html"; // Redirect to SummaryPage.html
+        });
+    </script>
+</body>
+</html>

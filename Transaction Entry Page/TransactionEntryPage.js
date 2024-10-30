@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Redirect to the Document Type page
                 window.location.href = '../Document Type Page/DocumentTypePage.html';
             } else {
-                // Redirect to the scheduling page
-                window.location.href = '../Scheduling Page/SchedulingPage.html';
+                // Redirect to the required documents page
+                window.location.href = '../Required Documents Page/RequiredDocumentsPage.html';
             }
         });
     });
