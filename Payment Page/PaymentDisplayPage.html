@@ -37,15 +37,24 @@
         </div>
     </div>
 
-    <div class="action-buttons">
-        <button id="nextButton" class="next-button">Next</button>
-        <button class="cancel-button">Cancel</button>
+     <!-- Confirmation Modal -->
+     <div id="cancelConfirmationModal" class="modal">
+        <div class="modal-content">
+            <h2>Are you sure you want to cancel the appointment booking?</h2>
+            <div class="modal-actions">
+                <button id="confirm-cancel-btn" class="confirm-button">Yes</button>
+                <button onclick="closeModal()" class="cancel-button">No</button>
+            </div>
+        </div>
     </div>
 
-    <script>
-        document.getElementById('nextButton').addEventListener('click', function() {
-            window.location.href = "../Summary Page/SummaryPage.html"; // Redirect to SummaryPage.html
-        });
+    <div class="actions">
+        <button type="button" id="next-btn">Next</button>
+        <button type="button" id="cancel-btn">Cancel</button>
+    </div>
+
+    <script src="PaymentDisplayPage.js">
+        
     </script>
 </body>
 </html>

@@ -125,9 +125,21 @@
                     <span class="error-message" id="error-province"></span>
                 </div>
             </div>
-            <div class="form-buttons">
-                <button type="submit" id="next" class="next-button">Next</button>
-                <button type="button" id="cancel" class="cancel-button">Cancel</button>
+
+            <!-- Confirmation Modal -->
+            <div id="cancelConfirmationModal" class="modal">
+                <div class="modal-content">
+                    <h2>Are you sure you want to cancel the appointment booking?</h2>
+                    <div class="modal-actions">
+                        <button id="confirm-cancel-btn" class="confirm-button">Yes</button>
+                        <button onclick="closeModal()" class="cancel-button">No</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button type="button" id="next-btn">Next</button>
+                <button type="button" id="cancel-btn">Cancel</button>
             </div>
         </form>
     </main>

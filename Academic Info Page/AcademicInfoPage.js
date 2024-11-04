@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log("DOM fully loaded and parsed");
+    // Call the validation function
+    validateTransactionType();
+
     // Get form fields
     const studentNumberField = document.getElementById('student-number');
     const departmentSelect = document.getElementById('filter-college-department');
@@ -10,7 +12,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const schoolField = document.getElementById('school');
     const transfereeField = document.getElementById('transferee-school');
     const lastSemAttendedField = document.getElementById('last-semester-attended');
-    const nextButton = document.getElementById('next');
+    const nextButton = document.getElementById('next-btn');
+    const cancelButton = document.getElementById('cancel-btn');
+    const confirmCancelButton = document.getElementById('confirm-cancel-btn');
+    const cancelConfirmationModal = document.getElementById('cancelConfirmationModal');
+
+    cancelButton.addEventListener('click', () => {
+        cancelConfirmationModal.style.display = 'block'; // Show the modal
+    });
+
+    confirmCancelButton.addEventListener('click', () => {
+        sessionStorage.clear();
+        console.log('CANCELLED BOOKING: SESSION STORAGE CLEARED');
+        window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
+    });
 
     // Capitalize Words function
     function capitalizeWords(input) {
@@ -273,3 +288,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// Function to validate if "transactionType" exists in sessionStorage
+function validateTransactionType() {
+    if (!sessionStorage.getItem('transactionType')) {
+        // Redirect to the transaction entry page if "transactionType" is not found
+        window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
+        return;
+    }
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById('cancelConfirmationModal').style.display = 'none';
+}

@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Call the validation function
+    validateTransactionType();
+
     const firstNameField = document.getElementById('first-name');
     const lastNameField = document.getElementById('last-name');
     const middleNameField = document.getElementById('middle-name');
@@ -20,13 +23,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const provinceField = document.getElementById('province');
 
 
-    const nextButton = document.getElementById('next');
+    const nextButton = document.getElementById('next-btn');
 
     const emailError = document.getElementById('error-email');
     const placeOfBirthError = document.getElementById('error-place-of-birth');
     const mobileError = document.getElementById('error-mobile-number');
     const whatsappError = document.getElementById('error-whatsapp-number');
     const telegramError = document.getElementById('error-telegram-number');
+
+    const cancelButton = document.getElementById('cancel-btn');
+    const confirmCancelButton = document.getElementById('confirm-cancel-btn');
+    const cancelConfirmationModal = document.getElementById('cancelConfirmationModal');
+
+    cancelButton.addEventListener('click', () => {
+        cancelConfirmationModal.style.display = 'block'; // Show the modal
+    });
+
+    confirmCancelButton.addEventListener('click', () => {
+        sessionStorage.clear();
+        console.log('CANCELLED BOOKING: SESSION STORAGE CLEARED');
+        window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
+    });
+
     
     // Simple validation pattern: "City/Town, Province"
     const pattern = /^[a-zA-Z\s]+,\s?[a-zA-Z\s]+$/;
@@ -371,3 +389,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// Function to validate if "transactionType" exists in sessionStorage
+function validateTransactionType() {
+    if (!sessionStorage.getItem('transactionType')) {
+        // Redirect to the transaction entry page if "transactionType" is not found
+        window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
+        return;
+    }
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById('cancelConfirmationModal').style.display = 'none';
+}
