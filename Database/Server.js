@@ -18,10 +18,10 @@ const storage = multer.memoryStorage(); // Store files in memory as Buffer objec
 const upload = multer({ storage });
 
 const dbConfig = {
-    server: 'VENNZLAPTOP',
+    server: '192.168.68.94',
     database: 'MSU-RFID',
-    user: 'Umbraven',
-    password: 'Crow07k#2117',
+    user: 'sa',
+    password: 'PASSWORD1!',
     options: {
         encrypt: true,
         trustServerCertificate: true,

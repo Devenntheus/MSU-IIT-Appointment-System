@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     validateTransactionType();
 
     const nextButton = document.getElementById('next-btn');
+    const cancelButton = document.getElementById('cancel-btn');
+    const confirmCancelButton = document.getElementById('confirm-cancel-btn');
+    const cancelConfirmationModal = document.getElementById('cancelConfirmationModal');
+
     const authDiplomaCheckbox = document.getElementById('authDiploma');
     const diplomaSection = document.getElementById('diplomaAuthentication');
     const authCertificateCheckbox = document.getElementById('authCertificate');
@@ -20,6 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    cancelButton.addEventListener('click', () => {
+        cancelConfirmationModal.style.display = 'block'; // Show the modal
+    });
+
+    confirmCancelButton.addEventListener('click', () => {
+        sessionStorage.clear();
+        console.log('CANCELLED BOOKING: SESSION STORAGE CLEARED');
+        window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
+    });
 
     // Attach event listeners to checkboxes
     toggleSection(authDiplomaCheckbox, diplomaSection);
