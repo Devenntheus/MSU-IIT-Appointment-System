@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Call the validation function
+    validateTransactionType();
+
     // Retrieve document type
     const documentType = sessionStorage.getItem('documentType');
     if (documentType) {
@@ -27,6 +30,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const fullyBookedClass = 'fully-booked';
     const partiallyBookedClass = 'partially-booked';
     const availableClass = 'available';
+
+    const cancelButton = document.getElementById('cancel-btn');
+    const confirmCancelButton = document.getElementById('confirm-cancel-btn');
+    const cancelConfirmationModal = document.getElementById('cancelConfirmationModal');
+
+    cancelButton.addEventListener('click', () => {
+        cancelConfirmationModal.style.display = 'block'; // Show the modal
+    });
+
+    confirmCancelButton.addEventListener('click', () => {
+        sessionStorage.clear();
+        console.log('CANCELLED BOOKING: SESSION STORAGE CLEARED');
+        window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
+    });
+
 
     let currentDate = new Date();
     let selectedDate = null;
@@ -163,7 +181,21 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = '../Personal & Contact Info Page/PersonalContactInfoPage.html';
     });
 
-    document.getElementById('cancel-btn').addEventListener('click', function () {
-        window.location.href = 'HomePage.html';
-    });
+    // document.getElementById('cancel-btn').addEventListener('click', function () {
+    //     window.location.href = 'HomePage.html';
+    // });
 });
+
+// Function to validate if "transactionType" exists in sessionStorage
+function validateTransactionType() {
+    if (!sessionStorage.getItem('transactionType')) {
+        // Redirect to the transaction entry page if "transactionType" is not found
+        window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
+        return;
+    }
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById('cancelConfirmationModal').style.display = 'none';
+}
