@@ -117,17 +117,15 @@ h2 {
     border: 2px solid red;
 }
 
-.form-buttons {
+.actions {
+    position: absolute;
+    bottom: 60px;
+    right: 85px;
     display: flex;
-    justify-content: flex-end;
     gap: 10px;
-    margin-top: 20px;
 }
 
-.next-button,
-.cancel-button {
-    font-family: 'Poppins', sans-serif;
-    margin-top: 40px;
+button {
     height: 55.56px;
     width: 235.2px;
     padding: 10px 20px;
@@ -137,12 +135,99 @@ h2 {
     cursor: pointer;
 }
 
-.next-button {
-    background-color: #F7D953;
+#next-btn {
+    background-color: #ffd700;
     color: #676767;
+    border: none;
+    border-radius: 5px;
 }
 
-.cancel-button {
-    background-color: #830006;
-    color: #FFF;
+#cancel-btn {
+    background-color: #800000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#next-btn:hover {
+    background-color: #e0ce53;
+}
+
+#cancel-btn:hover {
+    background-color: #bb0009; 
+}
+
+
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with transparency */
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.modal h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Align buttons to the bottom right */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+/* Smaller button styling */
+.confirm-button, .cancel-button {
+    background-color: #95a5a6;
+    color: white;
+    border: none;
+    padding: 8px 16px; /* Smaller padding */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px; /* Smaller font size */
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.confirm-button {
+    background-color: #e74c3c;
+}
+
+.confirm-button:hover {
+    background-color: #c0392b;
+}
+
+.cancel-button:hover {
+    background-color: #7f8c8d;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
 }
