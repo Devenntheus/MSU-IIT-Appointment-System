@@ -25,15 +25,25 @@
 
                     <div class="section">
                         <label class="section-title">Authentication of Document (Please upload file to be authenticated)*</label>
-                        <label><input type="checkbox" class="auth-checkbox" value="Authentication of Certificate">Authentication of Certificate</label>
-                        <label><input type="checkbox" class="auth-checkbox" value="Authentication of Transcript of Records">Authentication of Transcript of Records</label>
-                        <label><input type="checkbox" class="auth-checkbox" value="Authentication of Diploma">Authentication of Diploma</label>
+                        <label><input type="checkbox" id="authCertificate" class="auth-checkbox" value="Authentication of Certificate">Authentication of Certificate</label>
+                        <label><input type="checkbox" id="authTranscriptRecords" class="auth-checkbox" value="Authentication of Transcript of Records">Authentication of Transcript of Records</label>
+                        <label><input type="checkbox" id="authDiploma" class="auth-checkbox" value="Authentication of Diploma">Authentication of Diploma</label>
                         <label><input type="checkbox" class="auth-checkbox" value="Not Applicable">Not Applicable</label>         
                     </div>
 
-                    <div class="section">
-                        <label class="section-title" for="upload">Upload file to be authenticated.</label>
-                        <input type="file" id="upload">
+                    <div class="section" id="certificateAuthentication">
+                        <label class="section-title" for="uploadCertificate">Upload certificate file to be authenticated.</label>
+                        <input type="file" id="uploadCertificate">
+                    </div>
+
+                    <div class="section" id="transcriptRecordsAuthentication">
+                        <label class="section-title" for="uploadTranscriptRecords">Upload transcript of records file to be authenticated.</label>
+                        <input type="file" id="uploadTranscriptRecords">
+                    </div>
+
+                    <div class="section" id="diplomaAuthentication">
+                        <label class="section-title" for="uploadDiploma">Upload diploma file to be authenticated.</label>
+                        <input type="file" id="uploadDiploma">
                     </div>
 
                     <div class="section">

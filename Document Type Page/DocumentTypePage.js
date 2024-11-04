@@ -36,10 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Store the Cert. 12.16 input value in sessionStorage
         sessionStorage.setItem('Cert1216', cert12_16Value);
         
-        // Display the stored values in the console (for debugging purposes)
-        console.log('Document Type:', documentType);
-        console.log('Cert. 12.16 Value:', cert12_16Value);
-        
         // Redirect to the scheduling page
         window.location.href = '../Required Documents Page/RequiredDocumentsPage.html';
     });

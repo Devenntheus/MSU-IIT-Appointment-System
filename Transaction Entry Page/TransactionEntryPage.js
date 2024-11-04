@@ -10,8 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     transactionCards.forEach(card => {
         card.addEventListener('click', function() {
             const transactionType = this.getAttribute('data-transaction');
-            // Display the transaction type in the console
-            console.log('Transaction Type:', transactionType);
             // Store the transaction type in sessionStorage
             sessionStorage.setItem('transactionType', transactionType);
             // Check if the transaction type is "Document Request"

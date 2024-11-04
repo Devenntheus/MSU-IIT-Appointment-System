@@ -18,10 +18,10 @@ const storage = multer.memoryStorage(); // Store files in memory as Buffer objec
 const upload = multer({ storage });
 
 const dbConfig = {
-    server: '192.168.68.94',
+    server: 'VENNZLAPTOP',
     database: 'MSU-RFID',
-    user: 'sa',
-    password: 'PASSWORD1!',
+    user: 'Umbraven',
+    password: 'Crow07k#2117',
     options: {
         encrypt: true,
         trustServerCertificate: true,
@@ -30,13 +30,13 @@ const dbConfig = {
 };
 
 // Connection pool
-sql.connect(dbConfig, err => {
-    if (err) {
-        console.error('Database connection failed:', err);
-    } else {
+const poolPromise = new sql.ConnectionPool(dbConfig)
+    .connect()
+    .then(pool => {
         console.log('Database connected');
-    }
-});
+        return pool;
+    })
+    .catch(err => console.error('Database connection failed:', err));
 
 // Server endpoint where it check the availability of the selected date and time
 app.post('/api/checkAvailability', async (req, res) => {
@@ -145,122 +145,141 @@ app.post('/api/checkDocument', async (req, res) => {
     }
 });
 
-// Endpoint to handle form submission and file upload
-app.post('/api/submit', upload.single('document'), async (req, res) => {
-    const {
-        appointmentID,
-        transactionType,
-        appointmentDate,
-        timeFrom,
-        timeTo,
-        firstName,
-        middleName,
-        lastName,
-        dob,
-        gender,
-        age,
-        department,
-        course,
-        email,
-        mobileNumber,
-        houseStreet,
-        barangay,
-        city,
-        province,
-        status
-    } = req.body;
-
-    const documentContents = req.file;
-
+app.post('/api/submit', upload.any(), async (req, res) => {
     try {
-        // Connect to the database
-        await sql.connect(dbConfig);
+        const pool = await poolPromise; // Use the pool for the connection
+        const request = pool.request(); // Create a new request object
 
-        // Prepare the request with parameters
-        const request = new sql.Request();
-        request.input('appointmentID', sql.VarChar, appointmentID);
-        request.input('transactionType', sql.VarChar, transactionType);
-        request.input('appointmentDate', sql.Date, appointmentDate);
-        request.input('timeFrom', sql.VarChar, timeFrom);
-        request.input('timeTo', sql.VarChar, timeTo);
-        request.input('firstName', sql.VarChar, firstName);
-        request.input('middleName', sql.VarChar, middleName);
-        request.input('lastName', sql.VarChar, lastName);
-        request.input('dob', sql.Date, dob);
-        request.input('gender', sql.VarChar, gender);
-        request.input('age', sql.Int, age);
-        request.input('department', sql.VarChar, department);
-        request.input('course', sql.VarChar, course);
-        request.input('email', sql.VarChar, email);
-        request.input('mobileNumber', sql.VarChar, mobileNumber);
-        request.input('houseStreet', sql.VarChar, houseStreet);
-        request.input('barangay', sql.VarChar, barangay);
-        request.input('city', sql.VarChar, city);
-        request.input('province', sql.VarChar, province);
-        request.input('docFileName', sql.VarChar, documentContents.originalname);
-        request.input('documentContents', sql.VarBinary, documentContents.buffer);
-        request.input('status', sql.VarChar, status);
+        const formData = req.body;
+        const files = req.files;
 
-        // Execute the SQL query with the provided parameters
+        // Add input parameters
+        request.input('app_ID', sql.VarChar, formData.appointmentID);
+        request.input('app_transactionType', sql.VarChar, formData.transactionType);
+        request.input('app_documentType', sql.VarChar, formData.documentType);
+        request.input('app_date', sql.Date, formData.appointmentDate);
+        request.input('app_timeFrom', sql.VarChar, formData.timeFrom);
+        request.input('app_timeTo', sql.VarChar, formData.timeTo);
+        request.input('app_firstName', sql.VarChar, formData.firstName);
+        request.input('app_middleName', sql.VarChar, formData.middleName);
+        request.input('app_lastName', sql.VarChar, formData.lastName);
+        request.input('app_dateOfBirth', sql.Date, formData.dateOfBirth);
+        request.input('app_age', sql.Int, formData.age);
+        request.input('app_gender', sql.VarChar, formData.gender);
+        request.input('app_placeOfBirth', sql.VarChar, formData.placeOfBirth);
+        request.input('app_citizenship', sql.VarChar, formData.citizenship);
+        request.input('app_email', sql.VarChar, formData.email);
+        request.input('app_mobileNumber', sql.VarChar, formData.mobileNumber);
+        request.input('app_whatsAppNumber', sql.VarChar, formData.whatsAppNumber);
+        request.input('app_telegramNumber', sql.VarChar, formData.telegramNumber);
+        request.input('app_houseStreet', sql.VarChar, formData.houseStreet);
+        request.input('app_barangay', sql.VarChar, formData.barangay);
+        request.input('app_municipalityCity', sql.VarChar, formData.municipalityCity);
+        request.input('app_province', sql.VarChar, formData.province);
+        request.input('app_studentIdNumber', sql.VarChar, formData.studentID);
+        request.input('app_collegeDepartment', sql.VarChar, formData.collegeDepartment);
+        request.input('app_course', sql.VarChar, formData.course);
+        request.input('app_classification', sql.VarChar, formData.classification);
+        request.input('app_dateOfGraduation', sql.Date, formData.dateOfGraduation);
+        request.input('app_academicDistinction', sql.VarChar, formData.academicDistinction);
+        request.input('app_highschoolGraduated', sql.VarChar, formData.highschoolGraduated);
+        request.input('app_transfereeSchool', sql.VarChar, formData.transfereeSchool);
+        request.input('app_lastSemesterAttended', sql.VarChar, formData.lastSemesterAttended);
+        request.input('app_purposeOfRequest', sql.VarChar, formData.purposeOfRequest);
+        request.input('app_authenticationOfDocument', sql.VarChar, formData.authenticationOfDocument);
+        request.input('app_certificateRegistrationSemester', sql.VarChar, formData.certificateRegistrationSemester);
+        request.input('app_reportGradeSemester', sql.VarChar, formData.reportGradeSemester);
+        request.input('app_specialRequestDocumentType', sql.VarChar, formData.specialRequestDocumentType);
+        request.input('app_specialRequestCopies', sql.VarChar, formData.specialRequestCopies);
+        request.input('app_status', sql.VarChar, 'Pending');
+
+        // Initialize flags for files
+        let hasDocumentFile = false;
+        let hasCertificateFile = false;
+        let hasTranscriptFile = false;
+        let hasDiplomaFile = false;
+
+        // Add input parameters for files only if they exist
+        if (files && files.length > 0) {
+            files.forEach(file => {
+                if (file.fieldname === 'documentFile') {
+                    if (!hasDocumentFile) {
+                        request.input('app_documentFileName', sql.VarChar, file.originalname);
+                        request.input('app_document', sql.VarBinary, file.buffer);
+                        hasDocumentFile = true; // Mark as added
+                    }
+                } else if (file.fieldname === 'certificateRegistrationFile') {
+                    if (!hasCertificateFile) {
+                        request.input('app_authCertificateFileName', sql.VarChar, file.originalname);
+                        request.input('app_authCertificateDocument', sql.VarBinary, file.buffer);
+                        hasCertificateFile = true; // Mark as added
+                    }
+                } else if (file.fieldname === 'transcriptRecordsFile') {
+                    if (!hasTranscriptFile) {
+                        request.input('app_authTranscriptRecordsFileName', sql.VarChar, file.originalname);
+                        request.input('app_authTranscriptRecordsDocument', sql.VarBinary, file.buffer);
+                        hasTranscriptFile = true; // Mark as added
+                    }
+                } else if (file.fieldname === 'diplomaFile') {
+                    if (!hasDiplomaFile) {
+                        request.input('app_authDiplomaFileName', sql.VarChar, file.originalname);
+                        request.input('app_authDiplomaDocument', sql.VarBinary, file.buffer);
+                        hasDiplomaFile = true; // Mark as added
+                    }
+                }
+            });
+        }
+
+        // Set default values for parameters that are not set
+        if (!hasCertificateFile) {
+            request.input('app_authCertificateFileName', sql.VarChar, null);
+            request.input('app_authCertificateDocument', sql.VarBinary, null); 
+        }
+        if (!hasTranscriptFile) {
+            request.input('app_authTranscriptRecordsFileName', sql.VarChar, null);
+            request.input('app_authTranscriptRecordsDocument', sql.VarBinary, null);
+        }
+        if (!hasDiplomaFile) {
+            request.input('app_authDiplomaFileName', sql.VarChar, null);
+            request.input('app_authDiplomaDocument', sql.VarBinary, null);
+        }
+
+        // Insert data into the database
         await request.query(`
             INSERT INTO Appointments (
-                app_ID,
-                app_transactionType,
-                app_date,
-                app_timeFrom,
-                app_timeTo,
-                app_firstName,
-                app_middleName,
-                app_lastName,
-                app_DOB,
-                app_gender,
-                app_age,
-                app_collegeDepartment,
-                app_course,
-                app_email,
-                app_mobileNumber,
-                app_houseStreet,
-                app_barangay,
-                app_municipalityCity,
-                app_province,
-                app_docFileName,
-                app_document,
-                app_status
+                app_ID, app_transactionType, app_documentType, app_date, app_timeFrom, app_timeTo,
+                app_firstName, app_middleName, app_lastName, app_dateOfBirth, app_age, app_gender,
+                app_placeOfBirth, app_citizenship, app_email, app_mobileNumber, app_whatsAppNumber,
+                app_telegramNumber, app_houseStreet, app_barangay, app_municipalityCity, app_province,
+                app_studentIdNumber, app_collegeDepartment, app_course, app_classification, app_dateOfGraduation,
+                app_academicDistinction, app_highschoolGraduated, app_transfereeSchool, app_lastSemesterAttended,
+                app_purposeOfRequest, app_authenticationOfDocument, app_documentFileName, app_document,
+                app_authCertificateFileName, app_authCertificateDocument, app_authTranscriptRecordsFileName,
+                app_authTranscriptRecordsDocument, app_authDiplomaFileName, app_authDiplomaDocument,
+                app_certificateRegistrationSemester, app_reportGradeSemester, app_specialRequestDocumentType,
+                app_specialRequestCopies, app_status
             ) VALUES (
-                @appointmentID,
-                @transactionType,
-                @appointmentDate,
-                @timeFrom,
-                @timeTo,
-                @firstName,
-                @middleName,
-                @lastName,
-                @dob,
-                @gender,
-                @age,
-                @department,
-                @course,
-                @email,
-                @mobileNumber,
-                @houseStreet,
-                @barangay,
-                @city,
-                @province,
-                @docFileName,
-                @documentContents,
-                @status
+                @app_ID, @app_transactionType, @app_documentType, @app_date, @app_timeFrom, @app_timeTo,
+                @app_firstName, @app_middleName, @app_lastName, @app_dateOfBirth, @app_age, @app_gender,
+                @app_placeOfBirth, @app_citizenship, @app_email, @app_mobileNumber, @app_whatsAppNumber,
+                @app_telegramNumber, @app_houseStreet, @app_barangay, @app_municipalityCity, @app_province,
+                @app_studentIdNumber, @app_collegeDepartment, @app_course, @app_classification, @app_dateOfGraduation,
+                @app_academicDistinction, @app_highschoolGraduated, @app_transfereeSchool, @app_lastSemesterAttended,
+                @app_purposeOfRequest, @app_authenticationOfDocument, @app_documentFileName, @app_document,
+                @app_authCertificateFileName, @app_authCertificateDocument, @app_authTranscriptRecordsFileName,
+                @app_authTranscriptRecordsDocument, @app_authDiplomaFileName, @app_authDiplomaDocument, 
+                @app_certificateRegistrationSemester, @app_reportGradeSemester, @app_specialRequestDocumentType,
+                @app_specialRequestCopies, @app_status
             )
         `);
 
-        // Send a success response
-        res.json({ success: true, appointmentID });
-    } catch (err) {
-        console.error('Error inserting data:', err);
-        // Send an error response
-        res.status(500).json({ success: false, error: err.message });
-    } finally {
-        // Close the database connection
-        sql.close();
+        res.status(200).json({ success: true, message: 'Data submitted successfully' });
+    } catch (error) {
+        console.error('Error inserting data into the database:', error.message);
+        if (error.code) {
+            console.error('Error code:', error.code);
+        }
+        res.status(500).json({ success: false, message: 'An error occurred', error: error.message });
     }
 });
 

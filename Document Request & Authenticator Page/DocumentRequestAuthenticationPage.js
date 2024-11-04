@@ -1,5 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
     const nextButton = document.getElementById('next-btn');
+    const authDiplomaCheckbox = document.getElementById('authDiploma');
+    const diplomaSection = document.getElementById('diplomaAuthentication');
+    const authCertificateCheckbox = document.getElementById('authCertificate');
+    const certificateSection = document.getElementById('certificateAuthentication');
+    const authTranscriptRecordsCheckbox = document.getElementById('authTranscriptRecords');
+    const transcriptRecordsSection = document.getElementById('transcriptRecordsAuthentication');
+
+    // Function to toggle the display of sections based on checkbox state
+    function toggleSection(checkbox, section) {
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+    }
+
+    // Attach event listeners to checkboxes
+    toggleSection(authDiplomaCheckbox, diplomaSection);
+    toggleSection(authCertificateCheckbox, certificateSection);
+    toggleSection(authTranscriptRecordsCheckbox, transcriptRecordsSection);
 
     nextButton.addEventListener('click', () => {
         // Collecting all the data from inputs and checkboxes
@@ -23,29 +45,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Collecting file details and reading file content
-        const uploadFile = document.getElementById('upload').files[0];
-        let fileName = "";
-        let fileContents = "";
+        const uploadCertificate = document.getElementById('uploadCertificate').files[0];
+        const uploadTranscriptRecords = document.getElementById('uploadTranscriptRecords').files[0];
+        const uploadDiploma = document.getElementById('uploadDiploma').files[0];
 
-        if (uploadFile) {
-            fileName = uploadFile.name;
+        const fileReaders = [];
+        
+        if (uploadCertificate) {
+            fileReaders.push(readAndStoreFile(uploadCertificate, 'certificateAuthFileName', 'certificateAuthFileContents'));
+        }
+        
+        if (uploadTranscriptRecords) {
+            fileReaders.push(readAndStoreFile(uploadTranscriptRecords, 'transcriptRecordsAuthFileName', 'transcriptRecordsAuthFileContents'));
+        }
+
+        if (uploadDiploma) {
+            fileReaders.push(readAndStoreFile(uploadDiploma, 'diplomaAuthFileName', 'diplomaAuthFileContents'));
+        }
+
+        // Wait for all file readers to complete before storing inputs and redirecting
+        Promise.all(fileReaders).then(() => {
+            storeInputsAndRedirect(purpose, grades, certificate, specialRequests, authDocuments, requestDocuments);
+        }).catch((error) => {
+            console.error('Error reading files:', error);
+        });
+    });
+
+    function readAndStoreFile(file, fileNameKey, fileContentsKey) {
+        return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onload = function(e) {
-                fileContents = e.target.result;
-
-                // Store the file contents as Base64 in sessionStorage
-                sessionStorage.setItem('uploadAuthFileContents', fileContents);
-                sessionStorage.setItem('uploadAuthFileName', fileName);
-
-                // Proceed with storing other inputs and redirect
-                storeInputsAndRedirect(purpose, grades, certificate, specialRequests, authDocuments, requestDocuments);
-            }
-            reader.readAsDataURL(uploadFile); // Read file as data URL for Base64 encoding
-        } else {
-            // Proceed with storing other inputs and redirect if no file is uploaded
-            storeInputsAndRedirect(purpose, grades, certificate, specialRequests, authDocuments, requestDocuments);
-        }
-    });
+                const fileContents = e.target.result;
+                sessionStorage.setItem(fileNameKey, file.name);
+                sessionStorage.setItem(fileContentsKey, fileContents);
+                resolve();
+            };
+            reader.onerror = function(e) {
+                reject(e);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
 
     function storeInputsAndRedirect(purpose, grades, certificate, specialRequests, authDocuments, requestDocuments) {
         // Storing all the data in sessionStorage
@@ -55,16 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.setItem('specialRequests', specialRequests);
         sessionStorage.setItem('authDocuments', authDocuments.join(', '));
         sessionStorage.setItem('requestDocuments', requestDocuments.join(', '));
-
-        // Debugging logs
-        console.log('Purpose:', purpose);
-        console.log('Grades:', grades);
-        console.log('Certificate:', certificate);
-        console.log('Special Requests:', specialRequests);
-        console.log('Authentication Documents:', authDocuments.join(', '));
-        console.log('Request Documents:', requestDocuments.join(', '));
-        console.log('Upload File Name:', sessionStorage.getItem('uploadAuthFileName')); // corrected key
-        console.log('Upload File Contents:', sessionStorage.getItem('uploadAuthFileContents')); // corrected key
 
         // Redirect to the next page
         window.location.href = '../Payment Page/PaymentDisplayPage.html';

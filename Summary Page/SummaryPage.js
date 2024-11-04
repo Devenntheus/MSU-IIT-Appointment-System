@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const timeTo = sessionStorage.getItem('timeTo') || 'N/A';
 
     // Retrieve session values from Required Documents Page
-    const docFileName = sessionStorage.getItem('docFileName') || 'N/A';
+    const documentFileName = sessionStorage.getItem('docFileName') || 'N/A';
     const documentContents = sessionStorage.getItem('document') || 'N/A';
 
     // Retrieve session values from Personal Info Page
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const middleName = sessionStorage.getItem('middleName') || 'N/A';
     const lastName = sessionStorage.getItem('lastName') || 'N/A';
     const gender = sessionStorage.getItem('gender') || 'N/A';
-    const dob = sessionStorage.getItem('dob') || 'N/A';
+    const dateOfBirth = sessionStorage.getItem('dob') || 'N/A';
     const age = sessionStorage.getItem('age') || 'N/A';
     const placeOfBirth = sessionStorage.getItem('placeOfBirth') || 'N/A';
     const citizenship = sessionStorage.getItem('citizenship') || 'N/A';
@@ -29,34 +29,38 @@ document.addEventListener('DOMContentLoaded', function () {
     const telegramNumber = sessionStorage.getItem('telegramNumber') || 'N/A';
     const houseStreet = sessionStorage.getItem('houseStreet') || 'N/A';
     const barangay = sessionStorage.getItem('barangay') || 'N/A';
-    const city = sessionStorage.getItem('municipalityCity') || 'N/A';
+    const municipalityCity = sessionStorage.getItem('municipalityCity') || 'N/A';
     const province = sessionStorage.getItem('province') || 'N/A';
 
     // Retrieve session values from Academic Info Page
     const studentID = sessionStorage.getItem('studentId') || 'N/A';
-    const department = sessionStorage.getItem('department') || 'N/A';
+    const collegeDepartment = sessionStorage.getItem('department') || 'N/A';
     const course = sessionStorage.getItem('course') || 'N/A';
-    const studentAlumni = sessionStorage.getItem('studentAlumni') || 'N/A';
-    const dateGraduation = sessionStorage.getItem('dateGraduation') || 'N/A';
-    const Honor = sessionStorage.getItem('honor') || 'N/A';
-    const School = sessionStorage.getItem('school') || 'N/A';
+    const classification = sessionStorage.getItem('studentAlumni') || 'N/A';
+    const dateOfGraduation = sessionStorage.getItem('dateGraduation') || 'N/A';
+    const academicDistinction = sessionStorage.getItem('honor') || 'N/A';
+    const highschoolGraduated = sessionStorage.getItem('school') || 'N/A';
     const transfereeSchool = sessionStorage.getItem('transfereeSchool') || 'N/A';
-    const lastSemAttended = sessionStorage.getItem('lastSemAttended') || 'N/A';
+    const lastSemesterAttended = sessionStorage.getItem('lastSemAttended') || 'N/A';
 
     // Retrieve session values from Document Request Page
-    const purpose = sessionStorage.getItem('purpose') || 'N/A';
-    const grades = sessionStorage.getItem('grades') || 'N/A';
-    const certificate = sessionStorage.getItem('certificate') || 'N/A';
-    const specialRequests = sessionStorage.getItem('specialRequests') || 'N/A';
-    const authDocuments = sessionStorage.getItem('authDocuments') || 'N/A';
-    const requestDocuments = sessionStorage.getItem('requestDocuments') || 'N/A';
-    const uploadFileName = sessionStorage.getItem('uploadAuthFileName') || 'N/A';
-    const uploadFileContents = sessionStorage.getItem('uploadAuthFileContents') || 'N/A';
+    const purposeOfRequest = sessionStorage.getItem('purpose') || 'N/A';
+    const authenticationOfDocument = sessionStorage.getItem('authDocuments') || 'N/A';  
+    const certificateAuthFileName = sessionStorage.getItem('certificateAuthFileName') || 'N/A';
+    const certificateAuthFileContent = sessionStorage.getItem('certificateAuthFileContents') || 'N/A';
+    const transcriptRecordsAuthFileName = sessionStorage.getItem('transcriptRecordsAuthFileName') || 'N/A';
+    const transcriptRecordsAuthFileContents = sessionStorage.getItem('transcriptRecordsAuthFileContents') || 'N/A';
+    const diplomaAuthFileName = sessionStorage.getItem('diplomaAuthFileName') || 'N/A';
+    const diplomaAuthFileContents = sessionStorage.getItem('diplomaAuthFileContents') || 'N/A';
+    const reportGradeSemester = sessionStorage.getItem('grades') || 'N/A';
+    const certificateRegistrationSemester = sessionStorage.getItem('certificate') || 'N/A';
+    const specialRequestDocumentType = sessionStorage.getItem('requestDocuments') || 'N/A';
+    const specialRequestCopies = sessionStorage.getItem('specialRequests') || 'N/A';
 
     // Display retrieved Transaction/Document Type
     document.getElementById('transaction-type').textContent = transactionType;
     document.getElementById('document-type').textContent = documentType;
-    document.getElementById('document-file').textContent = docFileName;
+    document.getElementById('document-file').textContent = documentFileName;
 
     // Display retrieved Appointment Schedule
     document.getElementById('appointment-date').textContent = appointmentDate;
@@ -65,9 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Display retrieved Personal Info
     document.getElementById('full-name').textContent = `${firstName} ${middleName ? middleName + ' ' : ''}${lastName}`;
     document.getElementById('gender').textContent = gender;
-    document.getElementById('dob').textContent = dob;
+    document.getElementById('date-of-birth').textContent = dateOfBirth;
     document.getElementById('age').textContent = age;
-    document.getElementById('pob').textContent = placeOfBirth;
+    document.getElementById('place-of-birth').textContent = placeOfBirth;
     document.getElementById('citizenship').textContent = citizenship;
 
     // Display retrieved Contact Info
@@ -79,28 +83,45 @@ document.addEventListener('DOMContentLoaded', function () {
     // Display retrieved Address Info
     document.getElementById('house-street').textContent = houseStreet;
     document.getElementById('barangay').textContent = barangay;
-    document.getElementById('city').textContent = city;
+    document.getElementById('city').textContent = municipalityCity;
     document.getElementById('province').textContent = province;
 
     // Display retrieved Academic Info
     document.getElementById('id-number').textContent = studentID;
-    document.getElementById('department').textContent = department;
+    document.getElementById('department').textContent = collegeDepartment;
     document.getElementById('course').textContent = course;
-    document.getElementById('classification').textContent = studentAlumni;
-    document.getElementById('date-graduation').textContent = dateGraduation;
-    document.getElementById('honor').textContent = Honor;
-    document.getElementById('school').textContent = School;
+    document.getElementById('classification').textContent = classification;
+    document.getElementById('date-graduation').textContent = dateOfGraduation;
+    document.getElementById('academic-distinction').textContent = academicDistinction;
+    document.getElementById('highschool-graduated').textContent = highschoolGraduated;
     document.getElementById('transferee-school').textContent = transfereeSchool;
-    document.getElementById('last-sem-attended').textContent = lastSemAttended;
+    document.getElementById('last-sem-attended').textContent = lastSemesterAttended;
 
     // Display retrieved Document Request
-    document.getElementById('purpose').textContent = purpose;
-    document.getElementById('auth-doc-type').textContent = requestDocuments;
-    document.getElementById('auth-doc-file').textContent = uploadFileName;
-    document.getElementById('certificate-registration').textContent = certificate;
-    document.getElementById('report-grade').textContent = grades;
-    document.getElementById('special-req-doc-type').textContent = authDocuments;
-    document.getElementById('special-req-doc-copies').textContent = specialRequests;
+    document.getElementById('purpose').textContent = purposeOfRequest;
+    document.getElementById('authentication-of-doc').textContent = authenticationOfDocument;
+
+    // Set up file names based on conditions
+    function setFileName(element, fileName, fileContent) {
+        if (fileContent && fileContent !== 'N/A') {
+            element.href = createBlobUrl(fileContent, 'application/pdf');
+            element.textContent = fileName;
+            element.download = fileName;
+        } else {
+            element.textContent = ''; // Do not display N/A if no file is uploaded
+        }
+    }
+
+    // Call the function for each file
+    setFileName(document.getElementById('document-file'), documentFileName, documentContents);
+    setFileName(document.getElementById('certificate-registration-file'), certificateAuthFileName, certificateAuthFileContent);
+    setFileName(document.getElementById('transcript-records-file'), transcriptRecordsAuthFileName, transcriptRecordsAuthFileContents);
+    setFileName(document.getElementById('diploma-file'), diplomaAuthFileName, diplomaAuthFileContents);
+
+    document.getElementById('certificate-registration-sem').textContent = certificateRegistrationSemester;
+    document.getElementById('report-grade-sem').textContent = reportGradeSemester;
+    document.getElementById('special-req-doc-type').textContent = specialRequestDocumentType;
+    document.getElementById('special-req-doc-copies').textContent = specialRequestCopies;
 
     // Blob URL for the document contents
     function createBlobUrl(base64Content, mimeType) {
@@ -113,22 +134,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Document download links
     const documentFileElement = document.getElementById('document-file');
-    const authDocFileElement = document.getElementById('auth-doc-file');
+    const certificateRegistrationFileElement = document.getElementById('certificate-registration-file');
+    const transcriptRecordsFileElement = document.getElementById('transcript-records-file');
+    const diplomaFileElement = document.getElementById('diploma-file');
 
-    if (documentContents !== 'N/A') {
+    if (documentContents && documentContents !== 'N/A') {
         documentFileElement.href = createBlobUrl(documentContents, 'application/pdf');
-        documentFileElement.textContent = docFileName;
-        documentFileElement.download = docFileName;
+        documentFileElement.textContent = documentFileName;
+        documentFileElement.download = documentFileName;
     } else {
-        documentFileElement.textContent = 'N/A';
+        documentFileElement.textContent = ''; // Do not display N/A if no file is uploaded
     }
 
-    if (uploadFileContents !== 'N/A') {
-        authDocFileElement.href = createBlobUrl(uploadFileContents, 'application/pdf');
-        authDocFileElement.textContent = uploadFileName;
-        authDocFileElement.download = uploadFileName;
+    if (certificateAuthFileContent !== 'N/A') {
+        certificateRegistrationFileElement.href = createBlobUrl(certificateAuthFileContent, 'application/pdf');
+        certificateRegistrationFileElement.textContent = certificateAuthFileName;
+        certificateRegistrationFileElement.download = certificateAuthFileName;
     } else {
-        authDocFileElement.textContent = 'N/A';
+        certificateRegistrationFileElement.textContent = 'N/A';
+    }
+
+    if (transcriptRecordsAuthFileContents !== 'N/A') {
+        transcriptRecordsFileElement.href = createBlobUrl(transcriptRecordsAuthFileContents, 'application/pdf');
+        transcriptRecordsFileElement.textContent = transcriptRecordsAuthFileName;
+        transcriptRecordsFileElement.download = transcriptRecordsAuthFileName;
+    } else {
+        transcriptRecordsFileElement.textContent = 'N/A';
+    }
+
+    if (diplomaAuthFileContents !== 'N/A') {
+        diplomaFileElement.href = createBlobUrl(diplomaAuthFileContents, 'application/pdf');
+        diplomaFileElement.textContent = diplomaAuthFileName;
+        diplomaFileElement.download = diplomaAuthFileName;
+    } else {
+        diplomaFileElement.textContent = 'N/A';
     }
 
     // Generate appointment ID
@@ -140,40 +179,88 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Retrieve counter from the server or session (for simplicity, assuming counter = 1)
     const appointmentID = generateAppointmentID(1);
-    console.log('Generated Appointment ID:', appointmentID);
 
-    // Set up the submit button to send data
+    // Submit button to send data
     document.querySelector('.submit-button').addEventListener('click', function () {
         const formData = new FormData();
 
         formData.append('appointmentID', appointmentID);
         formData.append('transactionType', transactionType);
+        formData.append('documentType', documentType);
+
+        // Convert and append the requested document
+        if (documentContents !== 'N/A') {
+            const byteCharacters = atob(documentContents.split(',')[1]);
+            const byteNumbers = new Array(byteCharacters.length).fill().map((_, i) => byteCharacters.charCodeAt(i));
+            const documentBlob = new Blob([new Uint8Array(byteNumbers)], { type: 'application/pdf' });
+            formData.append('documentFile', documentBlob, documentFileName);
+        }
+
         formData.append('appointmentDate', appointmentDate);
         formData.append('timeFrom', timeFrom);
         formData.append('timeTo', timeTo);
+
         formData.append('firstName', firstName);
         formData.append('middleName', middleName);
         formData.append('lastName', lastName);
-        formData.append('dob', dob);
         formData.append('gender', gender);
+        formData.append('dateOfBirth', dateOfBirth);
         formData.append('age', age);
-        formData.append('department', department);
-        formData.append('course', course);
+        formData.append('placeOfBirth', placeOfBirth);
+        formData.append('citizenship', citizenship);
+
         formData.append('email', email);
         formData.append('mobileNumber', mobileNumber);
+        formData.append('whatsAppNumber', whatsAppNumber);
+        formData.append('telegramNumber', telegramNumber);
+
         formData.append('houseStreet', houseStreet);
         formData.append('barangay', barangay);
-        formData.append('city', city);
+        formData.append('municipalityCity', municipalityCity);
         formData.append('province', province);
+        
+        formData.append('studentID', studentID);
+        formData.append('collegeDepartment', collegeDepartment);
+        formData.append('course', course);
+        formData.append('classification', classification);
+        formData.append('dateOfGraduation', dateOfGraduation);
+        formData.append('academicDistinction', academicDistinction);
+        formData.append('highschoolGraduated', highschoolGraduated);
+        formData.append('transfereeSchool', transfereeSchool);
+        formData.append('lastSemesterAttended', lastSemesterAttended);
+
+        formData.append('purposeOfRequest', purposeOfRequest);
+        formData.append('authenticationOfDocument', authenticationOfDocument);
+
+        // Convert and append the certificate document
+        if (certificateAuthFileContent !== 'N/A') {
+            const certByteCharacters = atob(certificateAuthFileContent.split(',')[1]);
+            const certByteNumbers = new Array(certByteCharacters.length).fill().map((_, i) => certByteCharacters.charCodeAt(i));
+            const certBlob = new Blob([new Uint8Array(certByteNumbers)], { type: 'application/pdf' });
+            formData.append('certificateRegistrationFile', certBlob, certificateAuthFileName);
+        }
+
+        // Convert and append the transcript document
+        if (transcriptRecordsAuthFileContents !== 'N/A') {
+            const transcriptByteCharacters = atob(transcriptRecordsAuthFileContents.split(',')[1]);
+            const transcriptByteNumbers = new Array(transcriptByteCharacters.length).fill().map((_, i) => transcriptByteCharacters.charCodeAt(i));
+            const transcriptBlob = new Blob([new Uint8Array(transcriptByteNumbers)], { type: 'application/pdf' });
+            formData.append('transcriptRecordsFile', transcriptBlob, transcriptRecordsAuthFileName);
+        }
+
+        // Convert and append the diploma document
+        if (diplomaAuthFileContents !== 'N/A') {
+            const diplomaByteCharacters = atob(diplomaAuthFileContents.split(',')[1]);
+            const diplomaByteNumbers = new Array(diplomaByteCharacters.length).fill().map((_, i) => diplomaByteCharacters.charCodeAt(i));
+            const diplomaBlob = new Blob([new Uint8Array(diplomaByteNumbers)], { type: 'application/pdf' });
+            formData.append('diplomaFile', diplomaBlob, diplomaAuthFileName);
+        }
+
+        formData.append('certificateRegistrationSemester', certificateRegistrationSemester);
+        formData.append('reportGradeSemester', reportGradeSemester);
+        formData.append('specialRequestDocumentType', specialRequestDocumentType);
+        formData.append('specialRequestCopies', specialRequestCopies);
         formData.append('status', 'Pending');
-
-        // Convert documentContents from base64 to Blob
-        const byteCharacters = atob(documentContents.split(',')[1]);
-        const byteNumbers = new Array(byteCharacters.length).fill().map((_, i) => byteCharacters.charCodeAt(i));
-        const byteArray = new Uint8Array(byteNumbers);
-        const documentBlob = new Blob([byteArray], { type: 'application/pdf' });
-
-        formData.append('document', documentBlob, docFileName);
 
         fetch('http://localhost:3001/api/submit', {
             method: 'POST',
@@ -183,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             console.log('Server response:', data);
             if (data.success) {
-                alert(`Appointment submitted successfully! ID: ${data.appointmentID}`);
+                alert(`Appointment submitted successfully!`);
             } else {
                 alert('There was an error submitting the appointment.');
             }
