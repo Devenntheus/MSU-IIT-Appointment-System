@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const selectedTimeFromInput = document.getElementById('selected-time-from');
     const selectedTimeToInput = document.getElementById('selected-time-to');
     const nextBtn = document.getElementById('next-btn');
+    const errorMessage = document.getElementById('error-message');
 
     // Calendar and time selection logic
     const daysContainer = document.querySelector('.days');
@@ -174,16 +175,20 @@ document.addEventListener('DOMContentLoaded', function () {
     renderCalendar(currentDate); // Render calendar with today's date auto-selected
 
     nextBtn.addEventListener('click', function () {
-        sessionStorage.setItem('appointmentDate', selectedDate);
-        sessionStorage.setItem('timeFrom', selectedTimeFromInput.value);
-        sessionStorage.setItem('timeTo', selectedTimeToInput.value);
+        if (!selectedDateInput.value || !selectedTimeFromInput.value || !selectedTimeToInput.value) {
+            errorMessage.classList.add('error-show');
+            setTimeout(() => {
+                errorMessage.classList.remove('error-show');
+            }, 3000); // Remove error message after 3 seconds
+        } else {
+            errorMessage.classList.remove('error-show');
+            sessionStorage.setItem('appointmentDate', selectedDate);
+            sessionStorage.setItem('timeFrom', selectedTimeFromInput.value);
+            sessionStorage.setItem('timeTo', selectedTimeToInput.value);
 
-        window.location.href = '../Personal & Contact Info Page/PersonalContactInfoPage.html';
+            window.location.href = '../Personal & Contact Info Page/PersonalContactInfoPage.html';
+        }
     });
-
-    // document.getElementById('cancel-btn').addEventListener('click', function () {
-    //     window.location.href = 'HomePage.html';
-    // });
 });
 
 // Function to validate if "transactionType" exists in sessionStorage
