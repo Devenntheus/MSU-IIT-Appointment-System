@@ -98,9 +98,21 @@
                 I hereby confirm that the information provided above is accurate and complete to the best of my knowledge. I understand that any inaccuracies or omissions may result in delays or issues with my request. I take full responsibility for the correctness of the information submitted.
             </label>
         </div>
-        <div class="form-buttons">
-            <button type="button" class="submit-button">Submit</button>
-            <button type="button" class="cancel-button">Cancel</button>
+
+        <!-- Confirmation Modal -->
+        <div id="cancelConfirmationModal" class="modal">
+            <div class="modal-content">
+                <h3>Are you sure you want to cancel the appointment booking?</h3>
+                <div class="modal-actions">
+                    <button id="confirm-cancel-btn" class="confirm-button">Yes</button>
+                    <button onclick="closeModal()" class="cancel-button">No</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" id="submit-btn">Submit</button>
+            <button type="button" id="cancel-btn">Cancel</button>
         </div>
     </main>
 </body>

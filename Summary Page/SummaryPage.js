@@ -1,5 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
     
+    // Call the validation function
+    validateTransactionType();
+
+    const cancelButton = document.getElementById('cancel-btn');
+    const confirmCancelButton = document.getElementById('confirm-cancel-btn');
+    const cancelConfirmationModal = document.getElementById('cancelConfirmationModal');
+
+    cancelButton.addEventListener('click', () => {
+        cancelConfirmationModal.style.display = 'block'; // Show the modal
+    });
+
+    confirmCancelButton.addEventListener('click', () => {
+        sessionStorage.clear();
+        console.log('CANCELLED BOOKING: SESSION STORAGE CLEARED');
+        window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
+    });
+
+
     // Retrieve all session values
     const transactionType = sessionStorage.getItem('transactionType') || 'N/A';
     const documentType = sessionStorage.getItem('documentType') || 'N/A';
@@ -180,8 +198,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Retrieve counter from the server or session (for simplicity, assuming counter = 1)
     const appointmentID = generateAppointmentID(1);
 
-    // Submit button to send data
-    document.querySelector('.submit-button').addEventListener('click', function () {
+    const submitButton = document.getElementById('submit-btn');
+
+    submitButton.addEventListener('click', () => {
         const formData = new FormData();
 
         formData.append('appointmentID', appointmentID);
@@ -279,4 +298,23 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error:', error);
         });
     });
+
+    // // Submit button to send data
+    // document.querySelector('.submit-button').addEventListener('click', function () {
+        
+    // });
 });
+
+// Function to validate if "transactionType" exists in sessionStorage
+function validateTransactionType() {
+    if (!sessionStorage.getItem('transactionType')) {
+        // Redirect to the transaction entry page if "transactionType" is not found
+        window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
+        return;
+    }
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById('cancelConfirmationModal').style.display = 'none';
+}
