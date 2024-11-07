@@ -28,9 +28,9 @@
             <p>Download this form to fill out the required information.</p>
 
             <div class="document-download">
-                <i class="fas fa-file-alt"></i>
-                <input type="text" value="" readonly>
-                <a id="download-link" href="#" download>
+                <i class="fas fa-file-alt" id="file-icon" title="Click to download"></i>
+                <input type="text" value="" readonly id="file-label" title="Click to download">
+                <a id="download-link" href="#" download title="Click to download">
                     <i class="fas fa-cloud-download-alt download-icon"></i>
                 </a>
             </div>            
@@ -56,6 +56,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Error message container -->
+        <div id="error-message" class="error-message">
+            <span class="error-icon">&#9888;</span> <!-- Unicode for warning icon -->
+            <span class="error-text">Please upload the required document before proceeding with your appointment.</span>
         </div>
 
         <!-- Confirmation Modal -->

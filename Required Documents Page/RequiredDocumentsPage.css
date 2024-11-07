@@ -348,3 +348,26 @@ button {
     color: #333;
     cursor: pointer;
 }
+
+.error-message {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0; /* Initially hidden */
+}
+
+.error-icon {
+    margin-right: 10px;
+}
+
+.error-show {
+    opacity: 1; /* Show error message */
+}

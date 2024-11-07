@@ -121,6 +121,16 @@ button {
     cursor: pointer;
 }
 
+#submit-btn:disabled {
+    background-color: lightgray;
+    cursor: not-allowed;
+}
+
+#submit-btn:disabled:hover {
+    background-color: lightgray;
+    cursor: not-allowed;
+}
+
 #submit-btn {
     background-color: #ffd700;
     color: #676767;
@@ -251,4 +261,74 @@ button {
     font-size: 20px;
     color: #333;
     cursor: pointer;
+}
+
+/* Style for the success modal */
+.success-modal {
+    display: none;  /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Modal content box */
+.success-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;  /* Use column layout */
+    align-items: center;  /* Center content horizontally */
+}
+
+/* Success icon */
+.success-icon {
+    font-size: 50px;
+    color: #28a745;
+    margin-bottom: 20px;
+}
+
+/* Success title */
+.success-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 10px;
+}
+
+/* Description text */
+.success-description {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;  /* Space between description and button */
+    flex-grow: 0;  /* Prevent the description from growing */
+}
+
+/* Ok button styling */
+.ok-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.ok-button:hover {
+    background-color: #218838;  /* Darker green on hover */
 }

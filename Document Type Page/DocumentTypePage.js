@@ -36,11 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         // Get the value of the Cert. 12.16 input field
-        const cert12_16Value = document.getElementById('cert-12-16').value;
+        const cert12_16Value = document.getElementById('cert-12-16').value.trim();
+
+        // Add default "Cert. 12.16" if no checkbox is selected
+        if (selectedDocumentTypes.length === 0) {
+            selectedDocumentTypes.push("Cert. 12.16");
+        }
         
         // Include Cert. 12.16 in the selected document types if it has a value
         if (cert12_16Value) {
-            selectedDocumentTypes.push("Cert. 12.16");
+            selectedDocumentTypes.push(cert12_16Value);
+        } else {
+            const errorMessage = document.getElementById('error-school-address');
+            errorMessage.textContent = 'Please provide the name and address of the requesting school.';
+            errorMessage.style.visibility = 'visible';
+            return;
         }
         
         // Create a string from the selected document types

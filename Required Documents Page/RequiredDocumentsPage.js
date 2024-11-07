@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const transactionType = sessionStorage.getItem('transactionType');
-    
+
     if (transactionType) {
         fetch(`http://localhost:3001/api/checkDocument`, {
             method: 'POST',
@@ -15,8 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             if (data.fileName && data.file) {
-                const fileNameInput = document.querySelector('.document-download input');
-                const downloadLink = document.querySelector('.document-download a');
+                const fileNameInput = document.getElementById('file-label');
+                const downloadLink = document.getElementById('download-link');
+                const fileIcon = document.getElementById('file-icon');
 
                 fileNameInput.value = data.fileName;
                 const blob = b64toBlob(data.file, 'application/octet-stream');
@@ -24,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 downloadLink.href = url;
                 downloadLink.setAttribute('download', data.fileName);
+
+                fileIcon.addEventListener('click', () => downloadLink.click());
+                fileNameInput.addEventListener('click', () => downloadLink.click());
             } else {
                 alert('Document not found');
             }
@@ -43,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressFileName = document.getElementById('progress-file-name');
     const progressPercentage = document.getElementById('progress-percentage');
     const progressBar = document.getElementById('progress-bar');
+    const errorMessage = document.getElementById('error-message');
     const nextBtn = document.getElementById('next-btn');
     const cancelButton = document.getElementById('cancel-btn');
     const confirmCancelButton = document.getElementById('confirm-cancel-btn');
@@ -58,9 +63,9 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
     });
 
-
     let fileName = '';
     let fileContent = '';
+    let uploadProgress = 0;
 
     fileInput.addEventListener('change', function(event) {
         const file = event.target.files[0];
@@ -79,10 +84,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (progress < 100) {
                         progress += 1; // Increase progress by 1%
                         progressBar += 20; // Increase progress bar by 20%
+                        uploadProgress = progress; // Update the progress
                         updateProgress(progress);
                         updateProgressBarPercentage(progressBar);
                     } else {
                         clearInterval(interval);
+                        uploadProgress = 100; // Ensure it ends at 100%
                         updateProgress(100); // Ensure it ends at 100%
                     }
                 }, 30); // Update progress every 30ms
@@ -106,12 +113,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     nextBtn.addEventListener('click', function() {
-        if (fileName && fileContent) {
+        if (fileName && fileContent && uploadProgress === 100) {
             sessionStorage.setItem('docFileName', fileName);
             sessionStorage.setItem('document', fileContent);
             window.location.href = '../Scheduling Page/SchedulingPage.html';
         } else {
-            alert('Please upload a file first.');
+            errorMessage.classList.add('error-show');
+            setTimeout(() => {
+                errorMessage.classList.remove('error-show');
+            }, 3000);
         }
     });
 

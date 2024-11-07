@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Function to capitalize the first letter of input while typing
+    function capitalizeFirstLetterOnInput(event) {
+        let input = event.target.value;
+        event.target.value = input.charAt(0).toUpperCase() + input.slice(1);
+    }
+
+    // Add event listeners to input fields for capitalizing the first letter while typing
+    document.getElementById('purpose').addEventListener('input', capitalizeFirstLetterOnInput);
+    document.getElementById('grades').addEventListener('input', capitalizeFirstLetterOnInput);
+    document.getElementById('certificate').addEventListener('input', capitalizeFirstLetterOnInput);
+    document.getElementById('special-requests').addEventListener('input', capitalizeFirstLetterOnInput);
+    
     // Call the validation function
     validateTransactionType();
 
@@ -19,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         transcript: 'Please upload a transcript file.',
         diploma: 'Please upload a diploma file.'
     };
+    
 
     // Function to toggle the display of sections based on checkbox state
     function toggleSection(checkbox, section) {

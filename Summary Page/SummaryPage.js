@@ -3,9 +3,16 @@ document.addEventListener('DOMContentLoaded', function () {
     // Call the validation function
     validateTransactionType();
 
+    const okButton = document.getElementById('ok-btn');
     const cancelButton = document.getElementById('cancel-btn');
     const confirmCancelButton = document.getElementById('confirm-cancel-btn');
     const cancelConfirmationModal = document.getElementById('cancelConfirmationModal');
+
+    okButton.addEventListener('click', () => {
+        sessionStorage.clear();
+        console.log('CANCELLED BOOKING: SESSION STORAGE CLEARED');
+        window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
+    });
 
     cancelButton.addEventListener('click', () => {
         cancelConfirmationModal.style.display = 'block'; // Show the modal
@@ -16,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('CANCELLED BOOKING: SESSION STORAGE CLEARED');
         window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
     });
-
 
     // Retrieve all session values
     const transactionType = sessionStorage.getItem('transactionType') || 'N/A';
@@ -207,6 +213,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const submitButton = document.getElementById('submit-btn');
+    const checkbox = document.getElementById('confirm-checkbox');
+
+    // Disable the submit button initially
+    submitButton.disabled = true;
+
+    // Enable the submit button when the checkbox is checked
+    checkbox.addEventListener('change', function () {
+        submitButton.disabled = !checkbox.checked;
+    });
 
     submitButton.addEventListener('click', async () => {
         // Fetch the new appointment ID from the server
@@ -301,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             console.log('Server response:', data);
             if (data.success) {
-                alert(`Appointment submitted successfully!`);
+                showSuccessModal();
             } else {
                 alert('There was an error submitting the appointment.');
             }
@@ -324,6 +339,17 @@ function validateTransactionType() {
         window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
         return;
     }
+}
+
+function showSuccessModal() {
+    const successModal = document.getElementById('successModal');
+    successModal.style.display = 'block';
+}
+
+function closeSuccessModal() {
+    const successModal = document.getElementById('successModal');
+    successModal.style.display = 'none';
+    window.location.href = '../Transaction Entry Page/TransactionEntryPage.html';
 }
 
 // Function to close the modal
