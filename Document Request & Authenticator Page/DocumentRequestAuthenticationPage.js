@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const authTranscriptRecordsCheckbox = document.getElementById('authTranscriptRecords');
     const transcriptRecordsSection = document.getElementById('transcriptRecordsAuthentication');
 
+    const errorMessages = {
+        certificate: 'Please upload a certificate file.',
+        transcript: 'Please upload a transcript file.',
+        diploma: 'Please upload a diploma file.'
+    };
+
     // Function to toggle the display of sections based on checkbox state
     function toggleSection(checkbox, section) {
         checkbox.addEventListener('change', () => {
@@ -66,26 +72,60 @@ document.addEventListener('DOMContentLoaded', () => {
         const uploadTranscriptRecords = document.getElementById('uploadTranscriptRecords').files[0];
         const uploadDiploma = document.getElementById('uploadDiploma').files[0];
 
-        const fileReaders = [];
-        
-        if (uploadCertificate) {
-            fileReaders.push(readAndStoreFile(uploadCertificate, 'certificateAuthFileName', 'certificateAuthFileContents'));
-        }
-        
-        if (uploadTranscriptRecords) {
-            fileReaders.push(readAndStoreFile(uploadTranscriptRecords, 'transcriptRecordsAuthFileName', 'transcriptRecordsAuthFileContents'));
+        let isValid = true;
+
+        // Validate upload certificate
+        if (authCertificateCheckbox.checked && !uploadCertificate) {
+            document.getElementById('error-upload-certificate').innerText = errorMessages.certificate;
+            document.getElementById('error-upload-certificate').style.visibility = 'visible';
+            isValid = false;
+        } else {
+            document.getElementById('error-upload-certificate').innerText = '';
+            document.getElementById('error-upload-certificate').style.visibility = 'hidden';
         }
 
-        if (uploadDiploma) {
-            fileReaders.push(readAndStoreFile(uploadDiploma, 'diplomaAuthFileName', 'diplomaAuthFileContents'));
+        // Validate upload transcript
+        if (authTranscriptRecordsCheckbox.checked && !uploadTranscriptRecords) {
+            document.getElementById('error-upload-transcript').innerText = errorMessages.transcript;
+            document.getElementById('error-upload-transcript').style.visibility = 'visible';
+            isValid = false;
+        } else {
+            document.getElementById('error-upload-transcript').innerText = '';
+            document.getElementById('error-upload-transcript').style.visibility = 'hidden';
         }
 
-        // Wait for all file readers to complete before storing inputs and redirecting
-        Promise.all(fileReaders).then(() => {
-            storeInputsAndRedirect(purpose, grades, certificate, specialRequests, authDocuments, requestDocuments);
-        }).catch((error) => {
-            console.error('Error reading files:', error);
-        });
+        // Validate upload diploma
+        if (authDiplomaCheckbox.checked && !uploadDiploma) {
+            document.getElementById('error-upload-diploma').innerText = errorMessages.diploma;
+            document.getElementById('error-upload-diploma').style.visibility = 'visible';
+            isValid = false;
+        } else {
+            document.getElementById('error-upload-diploma').innerText = '';
+            document.getElementById('error-upload-diploma').style.visibility = 'hidden';
+        }
+
+        if (isValid) {
+            const fileReaders = [];
+
+            if (uploadCertificate) {
+                fileReaders.push(readAndStoreFile(uploadCertificate, 'certificateAuthFileName', 'certificateAuthFileContents'));
+            }
+
+            if (uploadTranscriptRecords) {
+                fileReaders.push(readAndStoreFile(uploadTranscriptRecords, 'transcriptRecordsAuthFileName', 'transcriptRecordsAuthFileContents'));
+            }
+
+            if (uploadDiploma) {
+                fileReaders.push(readAndStoreFile(uploadDiploma, 'diplomaAuthFileName', 'diplomaAuthFileContents'));
+            }
+
+            // Wait for all file readers to complete before storing inputs and redirecting
+            Promise.all(fileReaders).then(() => {
+                storeInputsAndRedirect(purpose, grades, certificate, specialRequests, authDocuments, requestDocuments);
+            }).catch((error) => {
+                console.error('Error reading files:', error);
+            });
+        }
     });
 
     function readAndStoreFile(file, fileNameKey, fileContentsKey) {
@@ -152,4 +192,3 @@ function validateTransactionType() {
 function closeModal() {
     document.getElementById('cancelConfirmationModal').style.display = 'none';
 }
-

@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Include Cert. 12.16 in the selected document types if it has a value
         if (cert12_16Value) {
-            selectedDocumentTypes.push("Cert. 12.16: No Objection");
+            selectedDocumentTypes.push("Cert. 12.16");
         }
         
         // Create a string from the selected document types

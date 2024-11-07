@@ -77,7 +77,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Display retrieved Transaction/Document Type
     document.getElementById('transaction-type').textContent = transactionType;
-    document.getElementById('document-type').textContent = documentType;
+
+    const documentTypeCert12_16 = "Cert. 12.16";
+    if(documentType === documentTypeCert12_16){
+        document.getElementById('document-type').textContent = documentType + ": " + cert12_16Value;
+    } else{
+        document.getElementById('document-type').textContent = documentType;
+    }
+    
     document.getElementById('document-file').textContent = documentFileName;
 
     // Display retrieved Appointment Schedule
