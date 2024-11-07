@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Show the loading spinner when the page loads
+    const loadingSpinner = document.getElementById('loading-spinner');
+    
+    // Show the page content after 3 seconds
+    setTimeout(() => {
+        // Hide the spinner and show the main content
+        loadingSpinner.style.display = 'none';
+        mainContent.style.display = 'block'; // Show main content
+
+        // Optionally, add a class to body to handle any other loaded state
+        document.body.classList.add('loaded');
+    }, 2000);
+    
     const transactionType = sessionStorage.getItem('transactionType');
 
     if (transactionType) {

@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Appointment</title>
     <link rel="stylesheet" href="SchedulingPage.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tai+Tham&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
     <header>
         <img src="../Images/msuiit-logo.png" alt="University Logo" class="logo">
         <div class="header-text">
@@ -14,6 +22,7 @@
             <p class="subtitle">I&nbsp;L&nbsp;I&nbsp;G&nbsp;A&nbsp;N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;N&nbsp;S&nbsp;T&nbsp;I&nbsp;T&nbsp;U&nbsp;T&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;F&nbsp;&nbsp;&nbsp;T&nbsp;E&nbsp;C&nbsp;H&nbsp;N&nbsp;O&nbsp;L&nbsp;O&nbsp;G&nbsp;Y</p>
         </div>
     </header>
+
     <main>
         <div class="container">
             <form id="appointment-form" method="POST">
