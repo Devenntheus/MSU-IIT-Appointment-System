@@ -195,19 +195,24 @@ document.addEventListener('DOMContentLoaded', function () {
         diplomaFileElement.textContent = 'N/A';
     }
 
-    // Generate appointment ID
-    function generateAppointmentID(counter) {
-        const date = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: '2-digit' }).replace(/\//g, '');
-        const paddedCounter = String(counter).padStart(3, '0');
-        return `APPT${paddedCounter}-${date}`;
+    // Fetch new appointment ID from the server
+    async function fetchAppointmentID() {
+        try {
+            const response = await fetch('http://localhost:3001/generate-appointment-id');
+            const data = await response.json();
+            return data.appointmentID;
+        } catch (err) {
+            console.error('Error fetching appointment ID:', err);
+        }
     }
-
-    // Retrieve counter from the server or session (for simplicity, assuming counter = 1)
-    const appointmentID = generateAppointmentID(1);
 
     const submitButton = document.getElementById('submit-btn');
 
-    submitButton.addEventListener('click', () => {
+    submitButton.addEventListener('click', async () => {
+        // Fetch the new appointment ID from the server
+        const appointmentID = await fetchAppointmentID();
+
+        // Create a new FormData object
         const formData = new FormData();
 
         formData.append('appointmentID', appointmentID);

@@ -2,20 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Call the validation function
     validateTransactionType();
 
-    // Retrieve document type
-    const documentType = sessionStorage.getItem('documentType');
-    if (documentType) {
-        console.log('Retrieved Document Type:', documentType);
-        // Use the retrieved document type as needed
-    }
-
-    // Retrieve Cert. 12.16 input value
-    const cert12_16Value = sessionStorage.getItem('Cert1216');
-    if (cert12_16Value) {
-        console.log('Retrieved Cert. 12.16 Value:', cert12_16Value);
-        // Use the retrieved Cert. 12.16 value as needed
-    }
-
     const selectedDateInput = document.getElementById('selected-date');
     const selectedTimeFromInput = document.getElementById('selected-time-from');
     const selectedTimeToInput = document.getElementById('selected-time-to');
@@ -112,6 +98,13 @@ document.addEventListener('DOMContentLoaded', function () {
     
                     selectedDate = formattedDate;
                     selectedDateInput.value = formattedDate;
+
+                    // Clear selected time slots
+                    selectedTimeFromInput.value = '';
+                    selectedTimeToInput.value = '';
+                    document.querySelectorAll('.times input[name="time"]').forEach(radio => {
+                        radio.checked = false;
+                    });
     
                     checkAvailability(formattedDate); // Check availability when a date is selected
                 });

@@ -145,6 +145,40 @@ app.post('/api/checkDocument', async (req, res) => {
     }
 });
 
+// Generate appointment ID
+function generateAppointmentID(latestID) {
+    const date = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: '2-digit' }).replace(/\//g, '');
+    let counter = 1;
+
+    if (latestID) {
+        const match = latestID.match(/APPT(\d{3})-\d{6}/);
+        if (match) {
+            counter = parseInt(match[1], 10) + 1;
+        }
+    }
+
+    const paddedCounter = String(counter).padStart(3, '0');
+    return `APPT${paddedCounter}-${date}`;
+}
+
+// Endpoint to get the latest appointment ID and generate a new one
+app.get('/generate-appointment-id', async (req, res) => {
+    try {
+        const pool = await poolPromise;
+        const result = await pool.request()
+            .query('SELECT TOP 1 app_ID FROM Appointments ORDER BY app_ID DESC');
+        
+        const latestID = result.recordset.length > 0 ? result.recordset[0].app_ID : null;
+        const newID = generateAppointmentID(latestID);
+        res.json({ appointmentID: newID });
+    } catch (err) {
+        console.error('Error generating appointment ID:', err);
+        res.status(500).json({ error: 'Error generating appointment ID' });
+    }
+});
+
+
+// Endpoint for submitting the data to the database.
 app.post('/api/submit', upload.any(), async (req, res) => {
     try {
         const pool = await poolPromise; // Use the pool for the connection
